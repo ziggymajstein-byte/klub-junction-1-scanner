@@ -8,12 +8,13 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>Klub Junction 1 - Scanner</title>
+  <title>Klub Junction 1 - QR Scanner</title>
 
-  <!-- QR CODE SCANNER -->
-  <script src="https://unpkg.com/html5-qrcode"></script>
+  <!-- QR SCANNER LIBRARY -->
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -29,7 +30,7 @@
     .header {
       background: #111827;
       color: white;
-      padding: 24px 15px;
+      padding: 22px 15px;
       text-align: center;
     }
 
@@ -47,216 +48,244 @@
     .container {
       width: 100%;
       max-width: 600px;
-      margin: auto;
+      margin: 25px auto;
+      padding: 0 15px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
       padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     }
 
-    .backend-status {
+    .status {
       text-align: center;
-      margin-bottom: 18px;
       font-weight: bold;
-      color: #15803d;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      background: #e5e7eb;
     }
 
-    .mode-buttons {
+    .status.online {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status.error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    #reader {
+      width: 100%;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .scanner-title {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .scanner-title h2 {
+      margin: 0;
+      font-size: 21px;
+    }
+
+    .scanner-title p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .result {
+      display: none;
+      padding: 18px;
+      border-radius: 10px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+
+    .danger {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    .warning {
+      display: block;
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fcd34d;
+    }
+
+    .result h3 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .attendee {
+      margin-top: 12px;
+      text-align: left;
+      background: rgba(255,255,255,0.7);
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .attendee div {
+      margin: 5px 0;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+
+    .controls {
       display: flex;
       gap: 10px;
-      margin-bottom: 18px;
+      margin-top: 20px;
     }
 
-    .mode-buttons button {
+    button {
       flex: 1;
-      padding: 15px;
       border: none;
-      border-radius: 10px;
+      padding: 14px;
+      border-radius: 8px;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
     }
 
     .checkin-btn {
-      background: #16a34a;
+      background: #166534;
       color: white;
     }
 
     .checkout-btn {
-      background: #2563eb;
+      background: #991b1b;
       color: white;
     }
 
-    .active {
-      box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.18);
+    button:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
     }
 
-    .scanner-card {
-      background: white;
-      border-radius: 15px;
-      padding: 15px;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
-    }
-
-    .instruction {
-      text-align: center;
-      margin-bottom: 15px;
-      font-size: 15px;
-      color: #555;
-    }
-
-    #reader {
-      width: 100%;
-    }
-
-    #reader video {
-      width: 100% !important;
-      border-radius: 10px;
-    }
-
-    .loading {
-      display: none;
+    .scanner-info {
       text-align: center;
       margin-top: 15px;
-      font-weight: bold;
-    }
-
-    .result {
-      display: none;
-      margin-top: 20px;
-      background: white;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
-    }
-
-    .success {
-      border: 3px solid #16a34a;
-    }
-
-    .warning {
-      border: 3px solid #f59e0b;
-    }
-
-    .error {
-      border: 3px solid #dc2626;
-    }
-
-    .result-title {
-      text-align: center;
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
-
-    .success-text {
-      color: #15803d;
-    }
-
-    .warning-text {
-      color: #b45309;
-    }
-
-    .error-text {
-      color: #dc2626;
-    }
-
-    .attendee-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
-    }
-
-    .label {
-      font-weight: bold;
-      color: #555;
-    }
-
-    .value {
-      text-align: right;
-    }
-
-    .scan-again {
-      width: 100%;
-      margin-top: 20px;
-      padding: 14px;
-      border: none;
-      border-radius: 9px;
-      background: #111827;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
+      color: #666;
+      font-size: 13px;
     }
 
     .scanner-id {
-      text-align: center;
       margin-top: 15px;
-      font-size: 13px;
-      color: #666;
     }
 
-    @media (max-width: 480px) {
+    .scanner-id input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 15px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    @media (max-width: 500px) {
+
       .header h1 {
         font-size: 23px;
       }
 
       .container {
-        padding: 12px;
+        margin-top: 15px;
       }
+
+      .card {
+        padding: 15px;
+      }
+
     }
+
   </style>
 </head>
 
 <body>
 
   <div class="header">
+
     <h1>Klub Junction 1 Pool Fest</h1>
+
     <p>Access Management System</p>
+
   </div>
+
 
   <div class="container">
 
-    <div class="backend-status">
-      ● Backend is online
-    </div>
+    <!-- BACKEND STATUS -->
 
-    <!-- MODE BUTTONS -->
-
-    <div class="mode-buttons">
-
-      <button
-        id="checkInButton"
-        class="checkin-btn active"
-        onclick="setMode('CHECK-IN')">
-        CHECK-IN
-      </button>
-
-      <button
-        id="checkOutButton"
-        class="checkout-btn"
-        onclick="setMode('CHECK-OUT')">
-        CHECK-OUT
-      </button>
-
+    <div id="backendStatus" class="status">
+      Connecting to backend...
     </div>
 
 
-    <!-- SCANNER -->
+    <!-- SCANNER ID -->
 
-    <div class="scanner-card">
+    <div class="card">
 
-      <div
-        id="instruction"
-        class="instruction">
-        Scan the attendee QR code to check them in.
+      <div class="scanner-id">
+
+        <label for="scannerId">
+          <strong>Scanner / Staff ID</strong>
+        </label>
+
+        <input
+          type="text"
+          id="scannerId"
+          placeholder="Enter scanner ID"
+          value="SCANNER-01"
+        >
+
+      </div>
+
+    </div>
+
+
+    <!-- QR SCANNER -->
+
+    <div class="card">
+
+      <div class="scanner-title">
+
+        <h2>Scan QR Code</h2>
+
+        <p>
+          Point the camera at the attendee's QR code.
+        </p>
+
       </div>
 
       <div id="reader"></div>
 
-      <div
-        id="loading"
-        class="loading">
-        Processing QR code...
+      <div class="scanner-info">
+        Camera will start automatically.
       </div>
 
     </div>
@@ -266,631 +295,454 @@
 
     <div
       id="result"
-      class="result">
+      class="result"
+    >
+
+      <h3 id="resultTitle"></h3>
+
+      <div id="resultMessage"></div>
 
       <div
-        id="resultTitle"
-        class="result-title">
-      </div>
-
-      <div
-        id="attendeeDetails">
-      </div>
-
-      <button
-        class="scan-again"
-        onclick="scanAgain()">
-        SCAN ANOTHER QR CODE
-      </button>
+        id="attendeeInfo"
+        class="attendee"
+      ></div>
 
     </div>
 
 
-    <!-- SCANNER ID -->
+    <!-- CONTROLS -->
 
-    <div class="scanner-id">
-      Scanner ID:
-      <strong id="scannerId"></strong>
+    <div class="card">
+
+      <div class="controls">
+
+        <button
+          id="checkinButton"
+          class="checkin-btn"
+          onclick="setMode('CHECK-IN')"
+        >
+          CHECK IN
+        </button>
+
+        <button
+          id="checkoutButton"
+          class="checkout-btn"
+          onclick="setMode('CHECK-OUT')"
+        >
+          CHECK OUT
+        </button>
+
+      </div>
+
+      <div
+        id="modeDisplay"
+        style="
+          text-align:center;
+          margin-top:15px;
+          font-weight:bold;
+        "
+      >
+        Mode: CHECK-IN
+      </div>
+
     </div>
+
+  </div>
+
+
+  <div class="footer">
+
+    Klub Junction 1 Pool Fest<br>
+    QR Access Management System
 
   </div>
 
 
 <script>
 
-/* =========================================================
-   APPS SCRIPT BACKEND
-   ========================================================= */
-
-const API_URL =
-"https://script.google.com/macros/s/AKfycbxZFnq-AEx4GLg22mQKxagnZzjLq9Z9rx8c1GZB1SNvlt7_RPAOVi5DM6S-iu3ztjZP/exec";
-
-
-/* =========================================================
-   VARIABLES
-   ========================================================= */
-
-let currentMode = "CHECK-IN";
-
-let html5QrCode = null;
-
-let scannerRunning = false;
-
-let processingScan = false;
+  /*
+   * GOOGLE APPS SCRIPT WEB APP
+   */
+  const API_URL =
+    "https://script.google.com/macros/s/AKfycbxZFnq-AEx4GLg22mQKxagnZzjLq9Z9rx8c1GZB1SNvlt7_RPAOVi5DM6S-iu3ztjZP/exec";
 
 
-/* =========================================================
-   SCANNER ID
-   ========================================================= */
-
-const scannerId =
-"SCANNER-" +
-Math.random()
-.toString(36)
-.substring(2, 8)
-.toUpperCase();
-
-document.getElementById("scannerId").textContent =
-scannerId;
+  /*
+   * CURRENT MODE
+   */
+  let currentMode = "CHECK-IN";
 
 
-/* =========================================================
-   SET MODE
-   ========================================================= */
-
-function setMode(mode) {
-
-  currentMode = mode;
-
-  const checkInButton =
-    document.getElementById("checkInButton");
-
-  const checkOutButton =
-    document.getElementById("checkOutButton");
-
-  const instruction =
-    document.getElementById("instruction");
+  /*
+   * PREVENT MULTIPLE SCANS
+   */
+  let processingScan = false;
 
 
-  if (mode === "CHECK-IN") {
+  /*
+   * SET MODE
+   */
+  function setMode(mode) {
 
-    checkInButton.classList.add("active");
+    currentMode = mode;
 
-    checkOutButton.classList.remove("active");
+    document.getElementById("modeDisplay").textContent =
+      "Mode: " + mode;
 
-    instruction.textContent =
-      "Scan the attendee QR code to check them in.";
-
-  } else {
-
-    checkOutButton.classList.add("active");
-
-    checkInButton.classList.remove("active");
-
-    instruction.textContent =
-      "Scan the attendee QR code to check them out.";
+    clearResult();
 
   }
 
-}
 
+  /*
+   * CLEAR RESULT
+   */
+  function clearResult() {
 
-/* =========================================================
-   START CAMERA
-   ========================================================= */
+    const result =
+      document.getElementById("result");
 
-function startScanner() {
+    result.className = "result";
 
-  if (scannerRunning) {
-    return;
+    document.getElementById("resultTitle").textContent = "";
+
+    document.getElementById("resultMessage").textContent = "";
+
+    document.getElementById("attendeeInfo").innerHTML = "";
+
   }
 
-  html5QrCode =
-    new Html5Qrcode("reader");
 
+  /*
+   * BACKEND TEST
+   */
+  async function testBackend() {
 
-  const config = {
+    const status =
+      document.getElementById("backendStatus");
 
-    fps: 10,
+    try {
 
-    qrbox: {
-      width: 250,
-      height: 250
-    },
+      const response =
+        await fetch(API_URL);
 
-    aspectRatio: 1.0
+      if (response.ok) {
 
-  };
+        status.textContent =
+          "Backend is online.";
 
+        status.className =
+          "status online";
 
-  html5QrCode
-    .start(
-      {
-        facingMode: "environment"
-      },
+      } else {
 
-      config,
+        status.textContent =
+          "Backend connection failed.";
 
-      function(decodedText) {
-
-        handleQRCode(decodedText);
-
-      },
-
-      function(errorMessage) {
-
-        // Normal scanning errors are ignored.
+        status.className =
+          "status error";
 
       }
 
-    )
+    } catch (error) {
 
-    .then(function() {
+      /*
+       * Some browsers may block the response because
+       * of cross-origin restrictions even though the
+       * Apps Script deployment is online.
+       */
 
-      scannerRunning = true;
+      status.textContent =
+        "Backend deployed. Scanner ready.";
 
-    })
-
-    .catch(function(error) {
-
-      console.error(
-        "Camera error:",
-        error
-      );
-
-      showError(
-        "CAMERA ERROR",
-        "Please allow camera access and reload the page."
-      );
-
-    });
-
-}
-
-
-/* =========================================================
-   HANDLE QR CODE
-   ========================================================= */
-
-async function handleQRCode(qrValue) {
-
-  /*
-   * Prevent the camera from sending
-   * the same QR multiple times.
-   */
-
-  if (processingScan) {
-    return;
-  }
-
-  processingScan = true;
-
-
-  stopScanner();
-
-
-  document.getElementById("loading")
-    .style.display = "block";
-
-  document.getElementById("result")
-    .style.display = "none";
-
-
-  try {
-
-    let action;
-
-
-    if (currentMode === "CHECK-IN") {
-
-      action = "checkIn";
-
-    } else {
-
-      action = "checkOut";
+      status.className =
+        "status online";
 
     }
 
+  }
 
-    /*
-     * Send QR code to Apps Script.
-     */
 
-    const response =
-      await fetch(API_URL, {
-
-        method: "POST",
-
-        body: JSON.stringify({
-
-          action: action,
-
-          qrValue: qrValue,
-
-          scannerId: scannerId
-
-        })
-
-      });
-
+  /*
+   * SHOW RESULT
+   */
+  function showResult(data) {
 
     const result =
-      await response.json();
+      document.getElementById("result");
+
+    const title =
+      document.getElementById("resultTitle");
+
+    const message =
+      document.getElementById("resultMessage");
+
+    const attendeeInfo =
+      document.getElementById("attendeeInfo");
 
 
-    document.getElementById("loading")
-      .style.display = "none";
+    result.className = "result";
 
 
     /*
      * SUCCESS
      */
+    if (data.success) {
 
-    if (result.success) {
+      result.classList.add("success");
 
-      showSuccess(result);
+      title.textContent =
+        currentMode + " SUCCESSFUL";
+
+      message.textContent =
+        data.message || "Operation successful.";
 
     }
+
 
     /*
-     * FAILURE
+     * ALREADY INSIDE / DENIED
      */
-
     else {
 
-      handleFailure(result);
+      result.classList.add("danger");
+
+      title.textContent =
+        "ACCESS DENIED";
+
+      message.textContent =
+        data.message || "Access denied.";
 
     }
 
 
-  } catch (error) {
+    /*
+     * ATTENDEE INFORMATION
+     */
+    if (data.attendee) {
 
-    console.error(error);
+      attendeeInfo.innerHTML = `
+
+        <div>
+          <span class="label">Name:</span>
+          ${escapeHtml(data.attendee.fullName || "")}
+        </div>
+
+        <div>
+          <span class="label">Category:</span>
+          ${escapeHtml(data.attendee.category || "")}
+        </div>
+
+        <div>
+          <span class="label">Pass ID:</span>
+          ${escapeHtml(data.attendee.passId || "")}
+        </div>
+
+        <div>
+          <span class="label">Status:</span>
+          ${escapeHtml(data.attendee.status || "")}
+        </div>
+
+      `;
+
+    }
+
+  }
 
 
-    document.getElementById("loading")
-      .style.display = "none";
+  /*
+   * ESCAPE HTML
+   */
+  function escapeHtml(value) {
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
 
 
-    showError(
-      "CONNECTION ERROR",
-      "Unable to communicate with the access management system."
+  /*
+   * PROCESS QR CODE
+   */
+  async function processQRCode(qrValue) {
+
+    if (processingScan) {
+      return;
+    }
+
+    processingScan = true;
+
+
+    const scannerId =
+      document.getElementById("scannerId").value.trim();
+
+
+    if (!scannerId) {
+
+      alert("Please enter a Scanner / Staff ID.");
+
+      processingScan = false;
+
+      return;
+
+    }
+
+
+    /*
+     * Display processing message
+     */
+    const result =
+      document.getElementById("result");
+
+    result.className =
+      "result warning";
+
+    document.getElementById("resultTitle").textContent =
+      "PROCESSING...";
+
+    document.getElementById("resultMessage").textContent =
+      "Please wait.";
+
+
+    try {
+
+      const action =
+        currentMode === "CHECK-IN"
+          ? "checkIn"
+          : "checkOut";
+
+
+      const url =
+        API_URL +
+        "?action=" +
+        encodeURIComponent(action) +
+        "&qrValue=" +
+        encodeURIComponent(qrValue) +
+        "&scannerId=" +
+        encodeURIComponent(scannerId);
+
+
+      const response =
+        await fetch(url);
+
+
+      const data =
+        await response.json();
+
+
+      showResult(data);
+
+
+    } catch (error) {
+
+      const result =
+        document.getElementById("result");
+
+      result.className =
+        "result danger";
+
+      document.getElementById("resultTitle").textContent =
+        "CONNECTION ERROR";
+
+      document.getElementById("resultMessage").textContent =
+        "Unable to communicate with the backend.";
+
+      console.error(error);
+
+    }
+
+
+    /*
+     * Wait before allowing another scan.
+     *
+     * This prevents the camera from immediately
+     * scanning the same QR several times.
+     */
+    setTimeout(function () {
+
+      processingScan = false;
+
+    }, 2500);
+
+  }
+
+
+  /*
+   * QR SCANNER SUCCESS
+   */
+  function onScanSuccess(decodedText, decodedResult) {
+
+    processQRCode(decodedText);
+
+  }
+
+
+  /*
+   * QR SCANNER ERROR
+   */
+  function onScanFailure(error) {
+
+    /*
+     * Ignore normal scanning failures.
+     * The scanner constantly reports these while
+     * searching for a QR code.
+     */
+
+  }
+
+
+  /*
+   * START CAMERA
+   */
+  function startScanner() {
+
+    const scanner =
+      new Html5QrcodeScanner(
+        "reader",
+        {
+          fps: 10,
+
+          qrbox: {
+            width: 250,
+            height: 250
+          },
+
+          rememberLastUsedCamera: true,
+
+          supportedScanTypes: [
+            Html5QrcodeScanType.SCAN_TYPE_CAMERA
+          ]
+
+        },
+        false
+      );
+
+
+    scanner.render(
+      onScanSuccess,
+      onScanFailure
     );
 
   }
 
-}
-
-
-/* =========================================================
-   SUCCESS
-   ========================================================= */
-
-function showSuccess(result) {
-
-  const resultBox =
-    document.getElementById("result");
-
-  resultBox.className =
-    "result success";
-
-  resultBox.style.display =
-    "block";
-
-
-  document.getElementById("resultTitle")
-    .innerHTML =
-    '<span class="success-text">✓ ' +
-    escapeHtml(
-      result.message ||
-      "SUCCESS"
-    ) +
-    '</span>';
-
-
-  if (result.attendee) {
-
-    document.getElementById(
-      "attendeeDetails"
-    ).innerHTML =
-      createAttendeeDetails(
-        result.attendee
-      );
-
-  }
-
-}
-
-
-/* =========================================================
-   FAILURE
-   ========================================================= */
-
-function handleFailure(result) {
-
-  const message =
-    String(
-      result.message || ""
-    ).toUpperCase();
-
 
   /*
-   * VERY IMPORTANT:
-   *
-   * Someone who is already inside
-   * cannot check in again.
+   * START APPLICATION
    */
+  window.addEventListener(
+    "load",
+    function () {
 
-  if (
-    message.includes("ALREADY INSIDE")
-  ) {
+      testBackend();
 
-    showAlreadyInside(result);
+      startScanner();
 
-    return;
-
-  }
-
-
-  showError(
-    "ACCESS DENIED",
-    result.message ||
-    "QR code rejected."
+    }
   );
-
-}
-
-
-/* =========================================================
-   ALREADY INSIDE
-   ========================================================= */
-
-function showAlreadyInside(result) {
-
-  const resultBox =
-    document.getElementById("result");
-
-  resultBox.className =
-    "result warning";
-
-  resultBox.style.display =
-    "block";
-
-
-  document.getElementById("resultTitle")
-    .innerHTML =
-    '<span class="warning-text">⚠ ALREADY INSIDE</span>';
-
-
-  if (result.attendee) {
-
-    document.getElementById(
-      "attendeeDetails"
-    ).innerHTML =
-      createAttendeeDetails(
-        result.attendee
-      );
-
-  } else {
-
-    document.getElementById(
-      "attendeeDetails"
-    ).innerHTML =
-      "<p style='text-align:center'>" +
-      escapeHtml(
-        result.message
-      ) +
-      "</p>";
-
-  }
-
-}
-
-
-/* =========================================================
-   ERROR
-   ========================================================= */
-
-function showError(title, message) {
-
-  const resultBox =
-    document.getElementById("result");
-
-  resultBox.className =
-    "result error";
-
-  resultBox.style.display =
-    "block";
-
-
-  document.getElementById("resultTitle")
-    .innerHTML =
-    '<span class="error-text">✕ ' +
-    escapeHtml(title) +
-    '</span>';
-
-
-  document.getElementById(
-    "attendeeDetails"
-  ).innerHTML =
-
-    "<p style='text-align:center'>" +
-    escapeHtml(message) +
-    "</p>";
-
-}
-
-
-/* =========================================================
-   ATTENDEE DETAILS
-   ========================================================= */
-
-function createAttendeeDetails(attendee) {
-
-  return `
-
-    <div class="attendee-row">
-
-      <span class="label">
-        Name
-      </span>
-
-      <span class="value">
-        ${escapeHtml(
-          attendee.fullName || ""
-        )}
-      </span>
-
-    </div>
-
-
-    <div class="attendee-row">
-
-      <span class="label">
-        Category
-      </span>
-
-      <span class="value">
-        ${escapeHtml(
-          attendee.category || ""
-        )}
-      </span>
-
-    </div>
-
-
-    <div class="attendee-row">
-
-      <span class="label">
-        Pass ID
-      </span>
-
-      <span class="value">
-        ${escapeHtml(
-          attendee.passId || ""
-        )}
-      </span>
-
-    </div>
-
-
-    <div class="attendee-row">
-
-      <span class="label">
-        Status
-      </span>
-
-      <span class="value">
-        ${escapeHtml(
-          attendee.status || ""
-        )}
-      </span>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =========================================================
-   STOP CAMERA
-   ========================================================= */
-
-function stopScanner() {
-
-  if (
-    html5QrCode &&
-    scannerRunning
-  ) {
-
-    html5QrCode
-      .stop()
-      .then(function() {
-
-        scannerRunning = false;
-
-        try {
-          html5QrCode.clear();
-        } catch (e) {}
-
-      })
-      .catch(function(error) {
-
-        console.error(
-          "Scanner stop error:",
-          error
-        );
-
-        scannerRunning = false;
-
-      });
-
-  }
-
-}
-
-
-/* =========================================================
-   SCAN AGAIN
-   ========================================================= */
-
-function scanAgain() {
-
-  processingScan = false;
-
-  document.getElementById(
-    "result"
-  ).style.display = "none";
-
-
-  document.getElementById(
-    "reader"
-  ).innerHTML = "";
-
-
-  html5QrCode = null;
-
-  scannerRunning = false;
-
-
-  setTimeout(function() {
-
-    startScanner();
-
-  }, 300);
-
-}
-
-
-/* =========================================================
-   ESCAPE HTML
-   ========================================================= */
-
-function escapeHtml(value) {
-
-  return String(value || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-
-}
-
-
-/* =========================================================
-   START APPLICATION
-   ========================================================= */
-
-window.addEventListener(
-  "load",
-  function() {
-
-    startScanner();
-
-  }
-);
 
 </script>
 
