@@ -1,1 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Klub Junction 1 - Scanner</title>
+
+  <!-- QR SCANNER LIBRARY -->
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: #111827;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .header p {
+      margin: 6px 0 0;
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .scanner-title {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .scanner-title h2 {
+      margin: 0 0 5px;
+      font-size: 20px;
+    }
+
+    .scanner-title p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+    }
+
+    #reader {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .scanner-controls {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 13px 18px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .start-btn {
+      background: #16a34a;
+      color: white;
+      width: 100%;
+    }
+
+    .stop-btn {
+      background: #dc2626;
+      color: white;
+      width: 100%;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .status {
+      display: none;
+      text-align: center;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .status.loading {
+      display: block;
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .status.success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status.error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .result {
+      display: none;
+    }
+
+    .result.show {
+      display: block;
+    }
+
+    .result-header {
+      text-align: center;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .result-header h2 {
+      margin: 0;
+    }
+
+    .result-details {
+      margin-top: 15px;
+    }
+
+    .detail {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .detail-label {
+      font-weight: bold;
+      color: #555;
+    }
+
+    .detail-value {
+      text-align: right;
+    }
+
+    .success-icon {
+      font-size: 50px;
+      margin-bottom: 5px;
+    }
+
+    .error-icon {
+      font-size: 50px;
+      margin-bottom: 5px;
+    }
+
+    .scanner-info {
+      text-align: center;
+      font-size: 13px;
+      color: #777;
+      margin-top: 10px;
+    }
+
+    .scanner-id {
+      font-weight: bold;
+      color: #111827;
+    }
+
+    @media (max-width: 480px) {
+
+      .container {
+        padding: 12px;
+      }
+
+      .card {
+        padding: 15px;
+      }
+
+      .header h1 {
+        font-size: 21px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+
+    <h1>KLUB JUNCTION 1</h1>
+
+    <p>Official QR Check-In Scanner</p>
+
+  </div>
+
+
+  <div class="container">
+
+    <!-- SCANNER CARD -->
+
+    <div class="card">
+
+      <div class="scanner-title">
+
+        <h2>Scan Pass</h2>
+
+        <p>
+          Scan the QR code on the attendee's pass
+        </p>
+
+      </div>
+
+
+      <div id="reader"></div>
+
+
+      <div class="scanner-controls">
+
+        <button
+          id="startButton"
+          class="start-btn"
+          onclick="startScanner()"
+        >
+          START CAMERA
+        </button>
+
+        <button
+          id="stopButton"
+          class="stop-btn"
+          onclick="stopScanner()"
+          disabled
+        >
+          STOP CAMERA
+        </button>
+
+      </div>
+
+
+      <div
+        id="status"
+        class="status"
+      ></div>
+
+
+      <div class="scanner-info">
+
+        Scanner ID:
+        <span
+          id="scannerId"
+          class="scanner-id"
+        ></span>
+
+      </div>
+
+    </div>
+
+
+    <!-- RESULT CARD -->
+
+    <div
+      id="resultCard"
+      class="card result"
+    >
+
+      <div class="result-header">
+
+        <div
+          id="resultIcon"
+          class="success-icon"
+        >
+          ✓
+        </div>
+
+        <h2 id="resultTitle">
+          CHECK-IN SUCCESSFUL
+        </h2>
+
+      </div>
+
+
+      <div class="result-details">
+
+        <div class="detail">
+
+          <span class="detail-label">
+            Name
+          </span>
+
+          <span
+            id="attendeeName"
+            class="detail-value"
+          >
+          </span>
+
+        </div>
+
+
+        <div class="detail">
+
+          <span class="detail-label">
+            Category
+          </span>
+
+          <span
+            id="attendeeCategory"
+            class="detail-value"
+          >
+          </span>
+
+        </div>
+
+
+        <div class="detail">
+
+          <span class="detail-label">
+            Attendee ID
+          </span>
+
+          <span
+            id="attendeeId"
+            class="detail-value"
+          >
+          </span>
+
+        </div>
+
+
+        <div class="detail">
+
+          <span class="detail-label">
+            Pass ID
+          </span>
+
+          <span
+            id="passId"
+            class="detail-value"
+          >
+          </span>
+
+        </div>
+
+
+        <div class="detail">
+
+          <span class="detail-label">
+            Status
+          </span>
+
+          <span
+            id="attendeeStatus"
+            class="detail-value"
+          >
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /*
+     * ==========================================================
+     * GOOGLE APPS SCRIPT WEB APP URL
+     * ==========================================================
+     *
+     * REPLACE THIS WITH YOUR DEPLOYED APPS SCRIPT WEB APP URL.
+     *
+     */
+
+   const APPS_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxZFnq-AEx4GLg22mQKxagnZzjLq9Z9rx8c1GZB1SNvlt7_RPAOVi5DM6S-iu3ztjZP/exec";";
+
+
+    /*
+     * ==========================================================
+     * SCANNER ID
+     * ==========================================================
+     */
+
+    const SCANNER_ID =
+      "KLUB-JUNCTION-1-SCANNER-001";
+
+
+    /*
+     * ==========================================================
+     * GLOBAL VARIABLES
+     * ==========================================================
+     */
+
+    let html5QrCode = null;
+
+    let scannerRunning = false;
+
+    let processingScan = false;
+
+
+    /*
+     * ==========================================================
+     * DISPLAY SCANNER ID
+     * ==========================================================
+     */
+
+    document.getElementById("scannerId").textContent =
+      SCANNER_ID;
+
+
+    /*
+     * ==========================================================
+     * START SCANNER
+     * ==========================================================
+     */
+
+    async function startScanner() {
+
+      if (scannerRunning) {
+        return;
+      }
+
+      try {
+
+        setStatus(
+          "Starting camera...",
+          "loading"
+        );
+
+        html5QrCode =
+          new Html5Qrcode("reader");
+
+
+        const config = {
+
+          fps: 10,
+
+          qrbox: function(viewfinderWidth, viewfinderHeight) {
+
+            const minEdge =
+              Math.min(
+                viewfinderWidth,
+                viewfinderHeight
+              );
+
+            return {
+              width: Math.floor(minEdge * 0.70),
+              height: Math.floor(minEdge * 0.70)
+            };
+
+          },
+
+          aspectRatio: 1.0
+
+        };
+
+
+        await html5QrCode.start(
+
+          {
+            facingMode: "environment"
+          },
+
+          config,
+
+          onScanSuccess,
+
+          onScanFailure
+
+        );
+
+
+        scannerRunning = true;
+
+        document.getElementById(
+          "startButton"
+        ).disabled = true;
+
+        document.getElementById(
+          "stopButton"
+        ).disabled = false;
+
+
+        setStatus(
+          "Camera ready — scan an attendee QR code.",
+          "loading"
+        );
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        setStatus(
+          "Unable to start camera. Please allow camera permission.",
+          "error"
+        );
+
+      }
+
+    }
+
+
+    /*
+     * ==========================================================
+     * STOP SCANNER
+     * ==========================================================
+     */
+
+    async function stopScanner() {
+
+      if (!html5QrCode || !scannerRunning) {
+        return;
+      }
+
+      try {
+
+        await html5QrCode.stop();
+
+        html5QrCode.clear();
+
+        scannerRunning = false;
+
+        document.getElementById(
+          "startButton"
+        ).disabled = false;
+
+        document.getElementById(
+          "stopButton"
+        ).disabled = true;
+
+
+        setStatus(
+          "Camera stopped.",
+          "loading"
+        );
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+      }
+
+    }
+
+
+    /*
+     * ==========================================================
+     * QR SCAN SUCCESS
+     * ==========================================================
+     */
+
+    async function onScanSuccess(
+      decodedText,
+      decodedResult
+    ) {
+
+      /*
+       * Prevent the same QR from triggering
+       * multiple requests while the first request
+       * is being processed.
+       */
+
+      if (processingScan) {
+        return;
+      }
+
+
+      processingScan = true;
+
+
+      console.log(
+        "QR SCANNED:",
+        decodedText
+      );
+
+
+      setStatus(
+        "Checking pass...",
+        "loading"
+      );
+
+
+      try {
+
+        const response =
+          await fetch(
+            APPS_SCRIPT_URL,
+            {
+
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "text/plain;charset=utf-8"
+              },
+
+              body: JSON.stringify({
+
+                action: "CHECK-IN",
+
+                qrValue: decodedText,
+
+                scannerId: SCANNER_ID
+
+              })
+
+            }
+          );
+
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          "SERVER RESPONSE:",
+          result
+        );
+
+
+        /*
+         * ======================================================
+         * SUCCESSFUL CHECK-IN
+         * ======================================================
+         */
+
+        if (
+          result.success === true &&
+          result.action === "CHECK-IN"
+        ) {
+
+          showSuccess(result);
+
+
+          /*
+           * Stop camera temporarily after a successful scan.
+           *
+           * This prevents the same QR code from immediately
+           * being scanned again.
+           */
+
+          await stopScanner();
+
+
+          setTimeout(
+            function() {
+
+              hideResult();
+
+              startScanner();
+
+            },
+
+            3000
+
+          );
+
+
+        }
+
+
+        /*
+         * ======================================================
+         * ALREADY INSIDE
+         * ======================================================
+         */
+
+        else if (
+          result.message &&
+          result.message.includes(
+            "ALREADY INSIDE"
+          )
+        ) {
+
+          showError(
+            "ALREADY INSIDE",
+            result.message,
+            result.attendee
+          );
+
+
+          await stopScanner();
+
+
+          setTimeout(
+            function() {
+
+              hideResult();
+
+              startScanner();
+
+            },
+
+            3000
+
+          );
+
+        }
+
+
+        /*
+         * ======================================================
+         * INVALID / OTHER ERROR
+         * ======================================================
+         */
+
+        else {
+
+          showError(
+            "CHECK-IN DENIED",
+            result.message ||
+              "Unable to check in this pass.",
+            result.attendee
+          );
+
+
+          await stopScanner();
+
+
+          setTimeout(
+            function() {
+
+              hideResult();
+
+              startScanner();
+
+            },
+
+            3000
+
+          );
+
+        }
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "CHECK-IN ERROR:",
+          error
+        );
+
+
+        showError(
+          "CONNECTION ERROR",
+          "Could not connect to the check-in server."
+        );
+
+
+        await stopScanner();
+
+
+        setTimeout(
+          function() {
+
+            hideResult();
+
+            startScanner();
+
+          },
+
+          3000
+
+        );
+
+      }
+
+      finally {
+
+        /*
+         * Allow another scan after the current
+         * transaction has finished.
+         */
+
+        processingScan = false;
+
+      }
+
+    }
+
+
+    /*
+     * ==========================================================
+     * QR SCAN FAILURE
+     * ==========================================================
+     */
+
+    function onScanFailure(error) {
+
+      /*
+       * This fires continuously while the camera
+       * is looking for a QR code.
+       *
+       * We intentionally do not display errors here.
+       */
+
+    }
+
+
+    /*
+     * ==========================================================
+     * SHOW SUCCESS
+     * ==========================================================
+     */
+
+    function showSuccess(result) {
+
+      const attendee =
+        result.attendee || {};
+
+
+      document.getElementById(
+        "resultCard"
+      ).classList.add("show");
+
+
+      document.getElementById(
+        "resultCard"
+      ).style.borderTop =
+        "6px solid #16a34a";
+
+
+      document.getElementById(
+        "resultIcon"
+      ).textContent = "✓";
+
+
+      document.getElementById(
+        "resultIcon"
+      ).style.color = "#16a34a";
+
+
+      document.getElementById(
+        "resultTitle"
+      ).textContent =
+        "CHECK-IN SUCCESSFUL";
+
+
+      document.getElementById(
+        "resultTitle"
+      ).style.color = "#166534";
+
+
+      document.getElementById(
+        "attendeeName"
+      ).textContent =
+        attendee.fullName || "-";
+
+
+      document.getElementById(
+        "attendeeCategory"
+      ).textContent =
+        attendee.category || "-";
+
+
+      document.getElementById(
+        "attendeeId"
+      ).textContent =
+        attendee.attendeeId || "-";
+
+
+      document.getElementById(
+        "passId"
+      ).textContent =
+        attendee.passId || "-";
+
+
+      document.getElementById(
+        "attendeeStatus"
+      ).textContent =
+        attendee.status || "CHECKED IN";
+
+
+      setStatus(
+        "✓ CHECK-IN SUCCESSFUL",
+        "success"
+      );
+
+    }
+
+
+    /*
+     * ==========================================================
+     * SHOW ERROR
+     * ==========================================================
+     */
+
+    function showError(
+      title,
+      message,
+      attendee
+    ) {
+
+      document.getElementById(
+        "resultCard"
+      ).classList.add("show");
+
+
+      document.getElementById(
+        "resultCard"
+      ).style.borderTop =
+        "6px solid #dc2626";
+
+
+      document.getElementById(
+        "resultIcon"
+      ).textContent = "✕";
+
+
+      document.getElementById(
+        "resultIcon"
+      ).style.color = "#dc2626";
+
+
+      document.getElementById(
+        "resultTitle"
+      ).textContent =
+        title;
+
+
+      document.getElementById(
+        "resultTitle"
+      ).style.color = "#991b1b";
+
+
+      document.getElementById(
+        "attendeeName"
+      ).textContent =
+        attendee?.fullName || "-";
+
+
+      document.getElementById(
+        "attendeeCategory"
+      ).textContent =
+        attendee?.category || "-";
+
+
+      document.getElementById(
+        "attendeeId"
+      ).textContent =
+        attendee?.attendeeId || "-";
+
+
+      document.getElementById(
+        "passId"
+      ).textContent =
+        attendee?.passId || "-";
+
+
+      document.getElementById(
+        "attendeeStatus"
+      ).textContent =
+        attendee?.status || "ACCESS DENIED";
+
+
+      setStatus(
+        "✕ " + message,
+        "error"
+      );
+
+    }
+
+
+    /*
+     * ==========================================================
+     * HIDE RESULT
+     * ==========================================================
+     */
+
+    function hideResult() {
+
+      document.getElementById(
+        "resultCard"
+      ).classList.remove("show");
+
+    }
+
+
+    /*
+     * ==========================================================
+     * STATUS MESSAGE
+     * ==========================================================
+     */
+
+    function setStatus(
+      message,
+      type
+    ) {
+
+      const status =
+        document.getElementById(
+          "status"
+        );
+
+
+      status.textContent =
+        message;
+
+
+      status.className =
+        "status " + type;
+
+    }
+
+  </script>
+
+</body>
+</html>
