@@ -312,25 +312,32 @@
 
     <!-- QR SCANNER -->
 
-    <div class="card">
+<div
+  id="scannerSection"
+  style="display:none;"
+>
 
-      <div class="scanner-title">
+  <div class="card">
 
-        <h2>Scan QR Code</h2>
+    <div class="scanner-title">
 
-        <p>
-          Point the camera at the attendee's QR code.
-        </p>
+      <h2>Scan QR Code</h2>
 
-      </div>
-
-      <div id="reader"></div>
-
-      <div class="scanner-info">
-        Camera will start automatically.
-      </div>
+      <p>
+        Point the camera at the attendee's QR code.
+      </p>
 
     </div>
+
+    <div id="reader"></div>
+
+    <div class="scanner-info">
+      Camera will start automatically.
+    </div>
+
+  </div>
+
+</div>
 
 
     <!-- RESULT -->
@@ -354,40 +361,47 @@
 
     <!-- CONTROLS -->
 
-    <div class="card">
+<div
+  id="controlsSection"
+  style="display:none;"
+>
 
-      <div class="controls">
+  <div class="card">
 
-        <button
-          id="checkinButton"
-          class="checkin-btn"
-          onclick="setMode('CHECK-IN')"
-        >
-          CHECK IN
-        </button>
+    <div class="controls">
 
-        <button
-          id="checkoutButton"
-          class="checkout-btn"
-          onclick="setMode('CHECK-OUT')"
-        >
-          CHECK OUT
-        </button>
-
-      </div>
-
-      <div
-        id="modeDisplay"
-        style="
-          text-align:center;
-          margin-top:15px;
-          font-weight:bold;
-        "
+      <button
+        id="checkinButton"
+        class="checkin-btn"
+        onclick="setMode('CHECK-IN')"
       >
-        Mode: CHECK-IN
-      </div>
+        CHECK IN
+      </button>
+
+      <button
+        id="checkoutButton"
+        class="checkout-btn"
+        onclick="setMode('CHECK-OUT')"
+      >
+        CHECK OUT
+      </button>
 
     </div>
+
+    <div
+      id="modeDisplay"
+      style="
+        text-align:center;
+        margin-top:15px;
+        font-weight:bold;
+      "
+    >
+      Mode: CHECK-IN
+    </div>
+
+  </div>
+
+</div>
 
   </div>
 
@@ -660,22 +674,29 @@ async function loginStaff() {
 
     console.log("Staff login:", data);
 
-    if (data.success) {
+   if (data.success) {
 
-      loggedInStaff = data.staff;
+  loggedInStaff = data.staff;
 
-      status.textContent =
-        "✓ Logged in: " +
-        data.staff.fullName +
-        " (" +
-        data.staff.role +
-        ")";
+  status.textContent =
+    "✓ Logged in: " +
+    data.staff.fullName +
+    " (" +
+    data.staff.role +
+    ")";
 
-      status.style.color = "#166534";
+  status.style.color = "#166534";
 
-      document.getElementById("staffPin").value = "";
+  document.getElementById("staffPin").value = "";
 
-    } else {
+  // SHOW SCANNER AFTER SUCCESSFUL LOGIN
+  document.getElementById("scannerSection").style.display = "block";
+
+  // SHOW CHECK-IN / CHECK-OUT CONTROLS
+  document.getElementById("controlsSection").style.display = "block";
+     startScanner();
+
+} else {
 
       loggedInStaff = null;
 
@@ -894,15 +915,13 @@ showResult(data);
    * START APPLICATION
    */
   window.addEventListener(
-    "load",
-    function () {
+  "load",
+  function () {
 
-      testBackend();
+    testBackend();
 
-      startScanner();
-
-    }
-  );
+  }
+);
 
 </script>
 
