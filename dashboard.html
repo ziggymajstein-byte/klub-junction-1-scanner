@@ -1,1 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Klub Junction 1 - Management Dashboard
+  </title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #111827;
+    }
+
+    /* ==========================================
+       HEADER
+    ========================================== */
+
+    .header {
+      background: #111827;
+      color: white;
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    .header p {
+      margin: 8px 0 0;
+      opacity: 0.9;
+    }
+
+
+    /* ==========================================
+       MAIN CONTAINER
+    ========================================== */
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 25px auto;
+      padding: 0 20px;
+    }
+
+
+    /* ==========================================
+       BACKEND STATUS
+    ========================================== */
+
+    .status {
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+
+    /* ==========================================
+       DASHBOARD CARDS
+    ========================================== */
+
+    .stats {
+      display: grid;
+      grid-template-columns:
+        repeat(5, 1fr);
+
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow:
+        0 4px 15px rgba(0,0,0,0.08);
+
+      text-align: center;
+    }
+
+    .stat-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .stat-number {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: #6b7280;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+
+    /* ==========================================
+       CONTENT GRID
+    ========================================== */
+
+    .grid {
+      display: grid;
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 20px;
+    }
+
+
+    /* ==========================================
+       SECTION CARD
+    ========================================== */
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+
+      box-shadow:
+        0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+
+    /* ==========================================
+       TABLE
+    ========================================== */
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    th {
+      background: #111827;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 13px;
+    }
+
+    tr:hover {
+      background: #f9fafb;
+    }
+
+
+    /* ==========================================
+       BADGES
+    ========================================== */
+
+    .badge {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .danger {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .warning {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+
+    /* ==========================================
+       REFRESH
+    ========================================== */
+
+    .refresh-area {
+      text-align: right;
+      margin-bottom: 15px;
+    }
+
+    .refresh-btn {
+      background: #111827;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .refresh-btn:hover {
+      opacity: 0.9;
+    }
+
+
+    /* ==========================================
+       EMPTY STATE
+    ========================================== */
+
+    .empty {
+      text-align: center;
+      padding: 30px;
+      color: #6b7280;
+    }
+
+
+    /* ==========================================
+       FOOTER
+    ========================================== */
+
+    .footer {
+      text-align: center;
+      padding: 25px;
+      color: #6b7280;
+      font-size: 13px;
+    }
+
+
+    /* ==========================================
+       MOBILE
+    ========================================== */
+
+    @media (max-width: 900px) {
+
+      .stats {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+    @media (max-width: 500px) {
+
+      .header h1 {
+        font-size: 23px;
+      }
+
+      .container {
+        padding: 0 12px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     HEADER
+========================================== -->
+
+<div class="header">
+
+  <h1>
+    Klub Junction 1 Pool Fest
+  </h1>
+
+  <p>
+    Management Dashboard
+  </p>
+
+</div>
+
+
+<div class="container">
+
+
+<!-- ==========================================
+     BACKEND STATUS
+========================================== -->
+
+<div
+  id="backendStatus"
+  class="status"
+>
+  Connecting to backend...
+</div>
+
+
+<!-- ==========================================
+     REFRESH BUTTON
+========================================== -->
+
+<div class="refresh-area">
+
+  <button
+    class="refresh-btn"
+    onclick="loadDashboard()"
+  >
+    ↻ REFRESH DASHBOARD
+  </button>
+
+</div>
+
+
+<!-- ==========================================
+     STATISTICS
+========================================== -->
+
+<div class="stats">
+
+
+  <div class="stat-card">
+
+    <div class="stat-icon">
+      👥
+    </div>
+
+    <div
+      id="total"
+      class="stat-number"
+    >
+      0
+    </div>
+
+    <div class="stat-label">
+      TOTAL ATTENDEES
+    </div>
+
+  </div>
+
+
+  <div class="stat-card">
+
+    <div class="stat-icon">
+      🟢
+    </div>
+
+    <div
+      id="checkedIn"
+      class="stat-number"
+    >
+      0
+    </div>
+
+    <div class="stat-label">
+      CHECKED IN
+    </div>
+
+  </div>
+
+
+  <div class="stat-card">
+
+    <div class="stat-icon">
+      🔴
+    </div>
+
+    <div
+      id="checkedOut"
+      class="stat-number"
+    >
+      0
+    </div>
+
+    <div class="stat-label">
+      CHECKED OUT
+    </div>
+
+  </div>
+
+
+  <div class="stat-card">
+
+    <div class="stat-icon">
+      🟡
+    </div>
+
+    <div
+      id="notCheckedIn"
+      class="stat-number"
+    >
+      0
+    </div>
+
+    <div class="stat-label">
+      NOT CHECKED IN
+    </div>
+
+  </div>
+
+
+  <div class="stat-card">
+
+    <div class="stat-icon">
+      🔵
+    </div>
+
+    <div
+      id="currentlyInside"
+      class="stat-number"
+    >
+      0
+    </div>
+
+    <div class="stat-label">
+      CURRENTLY INSIDE
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<!-- ==========================================
+     MAIN DASHBOARD
+========================================== -->
+
+<div class="grid">
+
+
+<!-- ==========================================
+     CURRENTLY INSIDE
+========================================== -->
+
+<div class="card">
+
+  <h2>
+    🟢 Currently Inside
+  </h2>
+
+  <div
+    id="currentAttendees"
+    class="table-container"
+  >
+  </div>
+
+</div>
+
+
+<!-- ==========================================
+     RECENT SCANS
+========================================== -->
+
+<div class="card">
+
+  <h2>
+    📋 Recent Scan Activity
+  </h2>
+
+  <div
+    id="recentScans"
+    class="table-container"
+  >
+  </div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<div class="footer">
+
+  Klub Junction 1 Pool Fest<br>
+
+  Access Management System
+
+</div>
+
+
+<script>
+
+
+/* ==========================================
+   GOOGLE APPS SCRIPT API
+========================================== */
+
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbxZFnq-AEx4GLg22mQKxagnZzjLq9Z9rx8c1GZB1SNvlt7_RPAOVi5DM6S-iu3ztjZP/exec";
+
+
+/* ==========================================
+   ESCAPE HTML
+========================================== */
+
+function escapeHtml(value) {
+
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+/* ==========================================
+   LOAD DASHBOARD
+========================================== */
+
+async function loadDashboard() {
+
+  const status =
+    document.getElementById(
+      "backendStatus"
+    );
+
+  status.textContent =
+    "Updating dashboard...";
+
+  try {
+
+    const response =
+      await fetch(
+        API_URL +
+        "?action=dashboard",
+        {
+          method: "GET",
+          redirect: "follow",
+          cache: "no-store"
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    console.log(
+      "Dashboard response:",
+      data
+    );
+
+
+    if (!data.success) {
+
+      throw new Error(
+        data.message ||
+        "Dashboard request failed."
+      );
+
+    }
+
+
+    /* ======================================
+       STATISTICS
+    ====================================== */
+
+    document.getElementById(
+      "total"
+    ).textContent =
+      data.total || 0;
+
+
+    document.getElementById(
+      "checkedIn"
+    ).textContent =
+      data.checkedIn || 0;
+
+
+    document.getElementById(
+      "checkedOut"
+    ).textContent =
+      data.checkedOut || 0;
+
+
+    document.getElementById(
+      "notCheckedIn"
+    ).textContent =
+      data.notCheckedIn || 0;
+
+
+    document.getElementById(
+      "currentlyInside"
+    ).textContent =
+      data.currentlyInside || 0;
+
+
+    /* ======================================
+       CURRENT ATTENDEES
+    ====================================== */
+
+    renderCurrentAttendees(
+      data.currentAttendees || []
+    );
+
+
+    /* ======================================
+       RECENT SCANS
+    ====================================== */
+
+    renderRecentScans(
+      data.recentScans || []
+    );
+
+
+    status.textContent =
+      "Dashboard updated successfully.";
+
+    status.style.background =
+      "#dcfce7";
+
+    status.style.color =
+      "#166534";
+
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Dashboard error:",
+      error
+    );
+
+
+    status.textContent =
+      "Unable to load dashboard data.";
+
+    status.style.background =
+      "#fee2e2";
+
+    status.style.color =
+      "#991b1b";
+
+  }
+
+}
+
+
+/* ==========================================
+   CURRENT ATTENDEES TABLE
+========================================== */
+
+function renderCurrentAttendees(
+  attendees
+) {
+
+  const container =
+    document.getElementById(
+      "currentAttendees"
+    );
+
+
+  if (!attendees.length) {
+
+    container.innerHTML = `
+      <div class="empty">
+        No attendees are currently inside.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  let html = `
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>Name</th>
+
+          <th>Category</th>
+
+          <th>Pass ID</th>
+
+          <th>Check-In Time</th>
+
+          <th>Staff</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+  `;
+
+
+  attendees.forEach(
+    attendee => {
+
+      html += `
+
+        <tr>
+
+          <td>
+            <strong>
+              ${escapeHtml(
+                attendee.fullName
+              )}
+            </strong>
+          </td>
+
+          <td>
+            ${escapeHtml(
+              attendee.category
+            )}
+          </td>
+
+          <td>
+            ${escapeHtml(
+              attendee.passId
+            )}
+          </td>
+
+          <td>
+            ${escapeHtml(
+              attendee.checkInTime
+            )}
+          </td>
+
+          <td>
+            ${escapeHtml(
+              attendee.checkedInBy
+            )}
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
+
+
+  html += `
+
+      </tbody>
+
+    </table>
+
+  `;
+
+
+  container.innerHTML =
+    html;
+
+}
+
+
+/* ==========================================
+   RECENT SCANS TABLE
+========================================== */
+
+function renderRecentScans(
+  scans
+) {
+
+  const container =
+    document.getElementById(
+      "recentScans"
+    );
+
+
+  if (!scans.length) {
+
+    container.innerHTML = `
+      <div class="empty">
+        No scan activity yet.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  let html = `
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>Attendee</th>
+
+          <th>Action</th>
+
+          <th>Result</th>
+
+          <th>Time</th>
+
+          <th>Staff</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+  `;
+
+
+  scans.forEach(
+    scan => {
+
+      let actionClass =
+        "warning";
+
+      if (
+        scan.action ===
+        "CHECK-IN"
+      ) {
+
+        actionClass =
+          "success";
+
+      }
+
+      else if (
+        scan.action ===
+        "CHECK-OUT"
+      ) {
+
+        actionClass =
+          "danger";
+
+      }
+
+
+      html += `
+
+        <tr>
+
+          <td>
+            ${escapeHtml(
+              scan.attendeeId
+            )}
+          </td>
+
+          <td>
+
+            <span
+              class="badge ${actionClass}"
+            >
+              ${escapeHtml(
+                scan.action
+              )}
+            </span>
+
+          </td>
+
+          <td>
+            ${escapeHtml(
+              scan.result
+            )}
+          </td>
+
+          <td>
+            ${escapeHtml(
+              scan.scanTime
+            )}
+          </td>
+
+          <td>
+            ${escapeHtml(
+              scan.scannerUser
+            )}
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
+
+
+  html += `
+
+      </tbody>
+
+    </table>
+
+  `;
+
+
+  container.innerHTML =
+    html;
+
+}
+
+
+/* ==========================================
+   START DASHBOARD
+========================================== */
+
+window.addEventListener(
+  "load",
+  function () {
+
+    loadDashboard();
+
+    /*
+     * Automatically refresh
+     * every 10 seconds.
+     */
+
+    setInterval(
+      loadDashboard,
+      10000
+    );
+
+  }
+);
+
+
+</script>
+
+
+</body>
+
+</html>
