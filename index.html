@@ -246,26 +246,68 @@
     </div>
 
 
-    <!-- SCANNER ID -->
+    <!-- STAFF LOGIN -->
 
-    <div class="card">
+<div class="card">
 
-      <div class="scanner-id">
+  <div class="scanner-id">
 
-        <label for="scannerId">
-          <strong>Scanner / Staff ID</strong>
-        </label>
+    <label for="scannerId">
+      <strong>Staff ID</strong>
+    </label>
 
-        <input
-          type="text"
-          id="scannerId"
-          placeholder="Enter scanner ID"
-          value="SCANNER-01"
-        >
+    <input
+      type="text"
+      id="scannerId"
+      placeholder="Enter Staff ID"
+      value="STAFF-002"
+    >
 
-      </div>
+    <br><br>
 
+    <label for="staffPin">
+      <strong>PIN</strong>
+    </label>
+
+    <input
+      type="password"
+      id="staffPin"
+      placeholder="Enter PIN"
+      maxlength="6"
+    >
+
+    <br><br>
+
+    <button
+      type="button"
+      onclick="loginStaff()"
+      style="
+        width:100%;
+        background:#111827;
+        color:white;
+        padding:12px;
+        border:none;
+        border-radius:8px;
+        font-weight:bold;
+      "
+    >
+      LOGIN
+    </button>
+
+    <div
+      id="staffStatus"
+      style="
+        margin-top:12px;
+        text-align:center;
+        font-weight:bold;
+      "
+    >
+      Not logged in
     </div>
+
+  </div>
+
+</div>
 
 
     <!-- QR SCANNER -->
@@ -565,6 +607,101 @@
   }
 
 
+  /* ==========================================
+   STAFF LOGIN
+========================================== */
+
+let loggedInStaff = null;
+
+async function loginStaff() {
+
+  const staffId =
+    document.getElementById("scannerId").value.trim();
+
+  const pin =
+    document.getElementById("staffPin").value.trim();
+
+  const status =
+    document.getElementById("staffStatus");
+
+  if (!staffId || !pin) {
+
+    status.textContent =
+      "Please enter Staff ID and PIN.";
+
+    status.style.color = "#991b1b";
+
+    return;
+
+  }
+
+  status.textContent = "Authenticating...";
+  status.style.color = "#92400e";
+
+  try {
+
+    const url =
+  API_URL +
+  "?action=staffLogin" +
+  "&staffId=" +
+  encodeURIComponent(staffId) +
+  "&pin=" +
+  encodeURIComponent(pin);
+
+    const response =
+      await fetch(url, {
+        method: "GET",
+        redirect: "follow",
+        cache: "no-store"
+      });
+
+    const data =
+      await response.json();
+
+    console.log("Staff login:", data);
+
+    if (data.success) {
+
+      loggedInStaff = data.staff;
+
+      status.textContent =
+        "✓ Logged in: " +
+        data.staff.fullName +
+        " (" +
+        data.staff.role +
+        ")";
+
+      status.style.color = "#166534";
+
+      document.getElementById("staffPin").value = "";
+
+    } else {
+
+      loggedInStaff = null;
+
+      status.textContent =
+        "✗ " +
+        (data.message || "Invalid Staff ID or PIN.");
+
+      status.style.color = "#991b1b";
+
+    }
+
+  } catch (error) {
+
+    loggedInStaff = null;
+
+    status.textContent =
+      "Staff authentication failed.";
+
+    status.style.color = "#991b1b";
+
+    console.error(error);
+
+  }
+
+}
+
   /*
    * PROCESS QR CODE
    */
@@ -577,19 +714,28 @@
     processingScan = true;
 
 
-    const scannerId =
-      document.getElementById("scannerId").value.trim();
+    /* ==========================================
+   REQUIRE STAFF LOGIN
+========================================== */
 
+if (!loggedInStaff) {
 
-    if (!scannerId) {
+  alert("Please login with your Staff ID and PIN first.");
 
-      alert("Please enter a Scanner / Staff ID.");
+  processingScan = false;
 
-      processingScan = false;
+  return;
 
-      return;
+}
 
-    }
+const scannerId =
+  loggedInStaff.staffId;
+
+const scannerUser =
+  loggedInStaff.fullName;
+
+const staffRole =
+  loggedInStaff.role;
 
 
     /*
@@ -617,24 +763,38 @@
 
 
       const url =
-        API_URL +
-        "?action=" +
-        encodeURIComponent(action) +
-        "&qrValue=" +
-        encodeURIComponent(qrValue) +
-        "&scannerId=" +
-        encodeURIComponent(scannerId);
+  API_URL +
+  "?action=" +
+  encodeURIComponent(action) +
+  "&qrValue=" +
+  encodeURIComponent(qrValue) +
+  "&scannerId=" +
+  encodeURIComponent(scannerId) +
+  "&scannerUser=" +
+  encodeURIComponent(scannerUser);
 
 
-      const response =
-        await fetch(url);
+      const response = await fetch(url, {
+    method: "GET",
+    redirect: "follow",
+    cache: "no-store"
+});
 
+const responseText = await response.text();
 
-      const data =
-        await response.json();
+console.log("Backend response:", responseText);
 
+let data;
 
-      showResult(data);
+try {
+    data = JSON.parse(responseText);
+} catch (jsonError) {
+    throw new Error(
+        "Backend did not return valid JSON: " + responseText
+    );
+}
+
+showResult(data);
 
 
     } catch (error) {
