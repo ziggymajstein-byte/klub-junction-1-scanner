@@ -1,1058 +1,809 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-  <title>
-    Klub Junction 1 Pool Fest — Management Dashboard
-  </title>
+<title>
+Klub Junction 1 Pool Fest — Management Dashboard
+</title>
 
-  <style>
+<style>
 
-    /* ==========================================
-       GLOBAL
-    ========================================== */
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    body {
+body {
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+  background:
+    radial-gradient(
+      circle at top right,
+      #071a32 0%,
+      #050912 45%,
+      #03050a 100%
+    );
 
-      background:
-        radial-gradient(
-          circle at top right,
-          #101b35 0%,
-          #070a12 42%,
-          #03050a 100%
-        );
+  color: #ffffff;
 
-      color: #ffffff;
+  min-height: 100vh;
 
-      min-height: 100vh;
+  font-size: 14px;
+}
 
-    }
+/* =========================================================
+   HEADER
+========================================================= */
 
+.header {
+  position: relative;
 
-    /* ==========================================
-       HEADER
-    ========================================== */
+  padding: 24px 32px 20px;
 
-    .header {
+  border-bottom: 2px solid #ef233c;
 
-      background:
-        linear-gradient(
-          135deg,
-          #07090f 0%,
-          #0c111d 100%
-        );
+  background:
+    linear-gradient(
+      90deg,
+      rgba(4, 7, 14, 0.98),
+      rgba(5, 12, 25, 0.96)
+    );
+}
 
-      border-bottom:
-        2px solid #e50920;
+.header::before {
+  content: "";
 
-      padding:
-        24px 40px;
+  position: absolute;
 
-      display: flex;
+  top: 8px;
+  left: 32px;
 
-      justify-content:
-        space-between;
+  width: 38px;
+  height: 4px;
 
-      align-items:
-        center;
+  background:
+    linear-gradient(
+      90deg,
+      #ef233c,
+      #ffd60a,
+      #00e676
+    );
 
-      gap: 20px;
+  border-radius: 10px;
+}
 
-    }
+.header-main {
+  display: flex;
 
+  justify-content: space-between;
 
-    .brand {
+  align-items: center;
 
-      display: flex;
+  gap: 20px;
+}
 
-      align-items:
-        center;
+.brand h1 {
+  font-size: 28px;
 
-      gap: 16px;
+  font-weight: 900;
 
-    }
+  letter-spacing: -0.5px;
+}
 
+.brand p {
+  margin-top: 6px;
 
-    .brand-mark {
+  color: #aeb8c7;
 
-      width: 8px;
+  font-size: 12px;
+}
 
-      height: 48px;
+.system-status {
+  display: flex;
 
-      border-radius: 10px;
+  align-items: center;
 
-      background:
-        linear-gradient(
-          to bottom,
-          #ffcc00,
-          #e50920,
-          #00cfff
-        );
+  gap: 8px;
 
-    }
+  padding: 9px 15px;
 
+  border: 1px solid #26354b;
 
-    .brand-text h1 {
+  border-radius: 30px;
 
-      font-size: 30px;
+  background: rgba(255,255,255,0.04);
 
-      font-weight: 800;
+  font-size: 11px;
 
-      letter-spacing: -0.5px;
+  font-weight: 800;
 
-    }
+  white-space: nowrap;
+}
 
+.status-dot {
+  width: 8px;
+  height: 8px;
 
-    .brand-text p {
+  background: #00e676;
 
-      margin-top: 5px;
+  border-radius: 50%;
 
-      font-size: 13px;
+  box-shadow:
+    0 0 10px rgba(0,230,118,0.9);
+}
 
-      color: #9ca3af;
+/* =========================================================
+   MAIN
+========================================================= */
 
-    }
+.container {
+  width: 100%;
 
+  max-width: 1500px;
 
-    .online-badge {
+  margin: 0 auto;
 
-      display: flex;
+  padding: 28px 34px 45px;
+}
 
-      align-items: center;
+.page-heading {
+  display: flex;
 
-      gap: 8px;
+  justify-content: space-between;
 
-      padding:
-        10px 16px;
+  align-items: flex-end;
 
-      border:
-        1px solid #263143;
+  margin-bottom: 18px;
+}
 
-      border-radius: 30px;
+.page-heading h2 {
+  font-size: 19px;
 
-      background:
-        rgba(17, 24, 39, 0.85);
+  font-weight: 900;
+}
 
-      color: #d1d5db;
+.page-heading p {
+  margin-top: 5px;
 
-      font-size: 12px;
+  color: #8995a8;
 
-      font-weight: 800;
+  font-size: 12px;
+}
 
-      white-space: nowrap;
+.last-updated {
+  color: #8290a4;
 
-    }
+  font-size: 11px;
+}
 
+/* =========================================================
+   CONNECTION BAR
+========================================================= */
 
-    .online-dot {
+.connection-bar {
+  display: flex;
 
-      width: 8px;
+  justify-content: space-between;
 
-      height: 8px;
+  align-items: center;
 
-      border-radius: 50%;
+  padding: 11px 15px;
 
-      background: #22c55e;
+  margin-bottom: 20px;
 
-      box-shadow:
-        0 0 12px rgba(34, 197, 94, 0.9);
+  border: 1px solid #1e3048;
 
-    }
+  border-left: 3px solid #00e676;
 
+  border-radius: 8px;
 
-    /* ==========================================
-       MAIN
-    ========================================== */
+  background: rgba(255,255,255,0.025);
 
-    .container {
+  color: #8ff0b8;
 
-      width: 100%;
+  font-size: 11px;
 
-      max-width: 1450px;
+  font-weight: 700;
+}
 
-      margin: 0 auto;
+.connection-left {
+  display: flex;
 
-      padding:
-        30px 34px 50px;
+  align-items: center;
 
-    }
+  gap: 9px;
+}
 
+.connection-dot {
+  width: 7px;
+  height: 7px;
 
-    .page-heading {
+  background: #00e676;
 
-      display: flex;
+  border-radius: 50%;
 
-      justify-content:
-        space-between;
+  box-shadow:
+    0 0 8px rgba(0,230,118,0.9);
+}
 
-      align-items:
-        flex-end;
+.auto-refresh {
+  color: #65748a;
 
-      margin-bottom: 18px;
+  font-size: 10px;
+}
 
-      gap: 20px;
+/* =========================================================
+   REFRESH BUTTON
+========================================================= */
 
-    }
+.refresh-row {
+  display: flex;
 
+  justify-content: flex-end;
 
-    .page-heading h2 {
+  margin-bottom: 12px;
+}
 
-      font-size: 22px;
+.refresh-button {
+  border: none;
 
-      font-weight: 800;
+  background: #e51e35;
 
-    }
+  color: white;
 
+  padding: 10px 17px;
 
-    .page-heading p {
+  border-radius: 7px;
 
-      margin-top: 5px;
+  font-size: 11px;
 
-      color: #8d96a8;
+  font-weight: 900;
 
-      font-size: 13px;
+  cursor: pointer;
 
-    }
+  transition: 0.2s;
+}
 
+.refresh-button:hover {
+  background: #ff3048;
 
-    .last-updated {
+  transform: translateY(-1px);
+}
 
-      font-size: 11px;
+.refresh-button:disabled {
+  opacity: 0.6;
 
-      color: #7f899b;
+  cursor: wait;
+}
 
-      text-align: right;
+/* =========================================================
+   STAT CARDS
+========================================================= */
 
-    }
+.stats-grid {
+  display: grid;
 
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
 
-    /* ==========================================
-       CONNECTION BAR
-    ========================================== */
+  gap: 14px;
 
-    .connection-bar {
+  margin-bottom: 18px;
+}
 
-      display: flex;
+.stat-card {
+  position: relative;
 
-      align-items: center;
+  min-height: 116px;
 
-      justify-content:
-        space-between;
+  padding: 16px;
 
-      gap: 15px;
+  border: 1px solid #202b3c;
 
-      padding:
-        12px 16px;
+  border-radius: 11px;
 
-      margin-bottom: 18px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18,23,34,0.98),
+      rgba(7,11,19,0.98)
+    );
 
-      background:
-        rgba(15, 20, 31, 0.92);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.25);
 
-      border:
-        1px solid #222b3c;
+  overflow: hidden;
+}
 
-      border-left:
-        3px solid #22c55e;
+.stat-card::before {
+  content: "";
 
-      border-radius: 8px;
+  position: absolute;
 
-      color: #aeb7c7;
+  top: 0;
+  left: 0;
 
-      font-size: 12px;
+  width: 100%;
+  height: 2px;
+}
 
-    }
+.stat-total::before {
+  background: #168cff;
+}
 
+.stat-checkin::before {
+  background: #00e676;
+}
 
-    .connection-left {
+.stat-checkout::before {
+  background: #ef233c;
+}
 
-      display: flex;
+.stat-notin::before {
+  background: #ffd60a;
+}
 
-      align-items: center;
+.stat-inside::before {
+  background: #00d9ff;
+}
 
-      gap: 9px;
+.stat-icon {
+  width: 34px;
+  height: 34px;
 
-    }
+  display: flex;
 
+  align-items: center;
 
-    .connection-dot {
+  justify-content: center;
 
-      width: 8px;
+  border-radius: 8px;
 
-      height: 8px;
+  background: rgba(255,255,255,0.07);
 
-      background: #22c55e;
+  font-size: 17px;
 
-      border-radius: 50%;
+  margin-bottom: 8px;
+}
 
-      box-shadow:
-        0 0 10px rgba(34,197,94,.8);
+.stat-number {
+  font-size: 27px;
 
-    }
+  font-weight: 900;
 
+  line-height: 1;
+}
 
-    .connection-text {
+.stat-label {
+  margin-top: 6px;
 
-      color: #4ade80;
+  color: #8f9bad;
 
-      font-weight: 700;
+  font-size: 10px;
 
-    }
+  font-weight: 900;
 
+  letter-spacing: 0.7px;
+}
 
-    .refresh-info {
+/* =========================================================
+   TWO COLUMN AREA
+========================================================= */
 
-      color: #657086;
+.content-grid {
+  display: grid;
 
-    }
+  grid-template-columns:
+    1fr 1.05fr;
 
+  gap: 16px;
+}
 
-    /* ==========================================
-       REFRESH BUTTON
-    ========================================== */
+/* =========================================================
+   PANELS
+========================================================= */
 
-    .refresh-row {
+.panel {
+  min-width: 0;
 
-      display: flex;
+  border: 1px solid #202a3a;
 
-      justify-content: flex-end;
+  border-radius: 12px;
 
-      margin-bottom: 16px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(13,17,27,0.98),
+      rgba(6,9,16,0.98)
+    );
 
-    }
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.28);
 
+  overflow: hidden;
+}
 
-    .refresh-btn {
+.panel-header {
+  display: flex;
 
-      border: none;
+  justify-content: space-between;
 
-      background:
-        linear-gradient(
-          135deg,
-          #e50920,
-          #b80718
-        );
+  align-items: center;
 
-      color: white;
+  padding: 17px 18px;
 
-      padding:
-        11px 18px;
+  border-bottom: 1px solid #202a3a;
+}
 
-      border-radius: 7px;
+.panel-title {
+  display: flex;
 
-      font-size: 12px;
+  align-items: center;
 
-      font-weight: 800;
+  gap: 9px;
 
-      cursor: pointer;
+  font-size: 15px;
 
-      box-shadow:
-        0 8px 20px rgba(229,9,32,.18);
+  font-weight: 900;
+}
 
-      transition:
-        transform .15s ease,
-        box-shadow .15s ease;
+.live-badge {
+  display: inline-flex;
 
-    }
+  align-items: center;
 
+  gap: 5px;
 
-    .refresh-btn:hover {
+  padding: 4px 8px;
 
-      transform:
-        translateY(-1px);
+  border-radius: 20px;
 
-      box-shadow:
-        0 10px 25px rgba(229,9,32,.3);
+  background: rgba(0,230,118,0.1);
 
-    }
+  border: 1px solid rgba(0,230,118,0.25);
 
+  color: #00e676;
 
-    /* ==========================================
-       KPI GRID
-    ========================================== */
+  font-size: 9px;
 
-    .stats-grid {
+  font-weight: 900;
+}
 
-      display: grid;
+.live-badge span {
+  width: 5px;
+  height: 5px;
 
-      grid-template-columns:
-        repeat(5, 1fr);
+  background: #00e676;
 
-      gap: 14px;
+  border-radius: 50%;
+}
 
-      margin-bottom: 18px;
+.panel-count {
+  color: #8190a5;
 
-    }
+  font-size: 10px;
 
+  font-weight: 700;
+}
 
-    .stat-card {
+/* =========================================================
+   TABLE
+========================================================= */
 
-      position: relative;
+.table-wrapper {
+  width: 100%;
 
-      overflow: hidden;
+  overflow-x: auto;
+}
 
-      min-height: 125px;
+table {
+  width: 100%;
 
-      padding: 20px;
+  border-collapse: collapse;
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(18,23,35,.98),
-          rgba(8,11,18,.98)
-        );
+  min-width: 620px;
+}
 
-      border:
-        1px solid #242d3d;
+thead {
+  background: rgba(255,255,255,0.025);
+}
 
-      border-radius: 12px;
+th {
+  padding: 12px 10px;
 
-      box-shadow:
-        0 15px 35px rgba(0,0,0,.22);
+  color: #77869d;
 
-    }
+  font-size: 9px;
 
+  font-weight: 900;
 
-    .stat-card::before {
+  text-align: left;
 
-      content: "";
+  letter-spacing: 0.7px;
 
-      position: absolute;
+  white-space: nowrap;
+}
 
-      top: 0;
+td {
+  padding: 12px 10px;
 
-      left: 0;
+  border-top: 1px solid rgba(255,255,255,0.055);
 
-      right: 0;
+  color: #e6eaf0;
 
-      height: 2px;
+  font-size: 10px;
 
-    }
+  white-space: nowrap;
+}
 
+tbody tr:hover {
+  background: rgba(255,255,255,0.025);
+}
 
-    .stat-card.total::before {
-      background: #7c3aed;
-    }
+.attendee-name {
+  font-weight: 800;
 
+  color: #ffffff;
+}
 
-    .stat-card.in::before {
-      background: #22c55e;
-    }
+.attendee-id {
+  display: block;
 
+  margin-top: 3px;
 
-    .stat-card.out::before {
-      background: #e50920;
-    }
+  color: #67758b;
 
+  font-size: 8px;
+}
 
-    .stat-card.pending::before {
-      background: #facc15;
-    }
+.category {
+  display: inline-block;
 
+  padding: 4px 7px;
 
-    .stat-card.inside::before {
-      background: #00cfff;
-    }
+  border-radius: 5px;
 
+  background: rgba(255,255,255,0.07);
 
-    .stat-icon {
+  color: #d8deea;
 
-      width: 34px;
+  font-size: 8px;
 
-      height: 34px;
+  font-weight: 800;
+}
 
-      display: flex;
+.pass-id {
+  color: #b9c7db;
 
-      align-items: center;
+  font-family: monospace;
 
-      justify-content: center;
+  font-size: 9px;
+}
 
-      border-radius: 9px;
+.staff-name {
+  color: #aeb9ca;
+}
 
-      background:
-        rgba(255,255,255,.07);
+/* =========================================================
+   ACTION / RESULT BADGES
+========================================================= */
 
-      color: #dbe4f3;
+.badge {
+  display: inline-block;
 
-      font-size: 15px;
+  padding: 5px 8px;
 
-      margin-bottom: 14px;
+  border-radius: 20px;
 
-    }
+  font-size: 8px;
 
+  font-weight: 900;
 
-    .stat-number {
+  letter-spacing: 0.2px;
 
-      font-size: 30px;
+  white-space: nowrap;
+}
 
-      line-height: 1;
+.badge-checkin {
+  color: #00e676;
 
-      font-weight: 900;
+  background: rgba(0,230,118,0.09);
 
-      letter-spacing: -1px;
+  border: 1px solid rgba(0,230,118,0.22);
+}
 
-    }
+.badge-checkout {
+  color: #ff4d62;
 
+  background: rgba(239,35,60,0.09);
 
-    .stat-label {
+  border: 1px solid rgba(239,35,60,0.22);
+}
 
-      margin-top: 7px;
+.badge-success {
+  color: #00e676;
 
-      color: #8993a5;
+  background: rgba(0,230,118,0.09);
 
-      font-size: 10px;
+  border: 1px solid rgba(0,230,118,0.22);
+}
 
-      font-weight: 800;
+.badge-warning {
+  color: #ffd60a;
 
-      letter-spacing: .8px;
+  background: rgba(255,214,10,0.09);
 
-    }
+  border: 1px solid rgba(255,214,10,0.22);
+}
 
+.badge-danger {
+  color: #ff5265;
 
-    /* ==========================================
-       MAIN PANELS
-    ========================================== */
+  background: rgba(239,35,60,0.09);
 
-    .content-grid {
+  border: 1px solid rgba(239,35,60,0.22);
+}
 
-      display: grid;
+/* =========================================================
+   EMPTY STATE
+========================================================= */
 
-      grid-template-columns:
-        1fr 1fr;
+.empty-state {
+  padding: 50px 20px;
 
-      gap: 18px;
+  text-align: center;
 
-    }
+  color: #66748a;
 
+  font-size: 11px;
+}
 
-    .panel {
+/* =========================================================
+   FOOTER
+========================================================= */
 
-      min-height: 440px;
+.footer {
+  text-align: center;
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(15,19,29,.98),
-          rgba(7,10,16,.98)
-        );
+  padding: 35px 20px 20px;
 
-      border:
-        1px solid #242c3b;
+  color: #56647a;
 
-      border-radius: 12px;
+  font-size: 9px;
 
-      overflow: hidden;
+  line-height: 1.6;
+}
 
-      box-shadow:
-        0 18px 45px rgba(0,0,0,.22);
+.footer strong {
+  color: #77859b;
+}
 
-    }
+/* =========================================================
+   LOADING
+========================================================= */
 
+.loading {
+  opacity: 0.55;
 
-    .panel-header {
+  pointer-events: none;
+}
 
-      display: flex;
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
-      justify-content:
-        space-between;
+@media (max-width: 1100px) {
 
-      align-items:
-        center;
+  .stats-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
 
-      padding:
-        18px 20px;
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
 
-      border-bottom:
-        1px solid #222a39;
+}
 
-    }
+@media (max-width: 700px) {
 
+  .header {
+    padding: 22px 18px 18px;
+  }
 
-    .panel-title {
+  .header-main {
+    align-items: flex-start;
 
-      display: flex;
+    flex-direction: column;
+  }
 
-      align-items:
-        center;
+  .brand h1 {
+    font-size: 22px;
+  }
 
-      gap: 9px;
+  .container {
+    padding: 22px 14px 35px;
+  }
 
-      font-size: 15px;
+  .page-heading {
+    align-items: flex-start;
 
-      font-weight: 800;
+    flex-direction: column;
 
-    }
+    gap: 8px;
+  }
 
+  .stats-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
 
-    .panel-title-dot {
+}
 
-      width: 9px;
+@media (max-width: 430px) {
 
-      height: 9px;
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
 
-      border-radius: 50%;
+  .stat-card {
+    min-height: 100px;
+  }
 
-      background: #22c55e;
+}
 
-      box-shadow:
-        0 0 10px rgba(34,197,94,.7);
+/* =========================================================
+   ANIMATION
+========================================================= */
 
-    }
+@keyframes pulse {
 
+  0% {
+    opacity: 1;
+  }
 
-    .panel-title-dot.activity {
+  50% {
+    opacity: 0.45;
+  }
 
-      background: #00cfff;
+  100% {
+    opacity: 1;
+  }
 
-      box-shadow:
-        0 0 10px rgba(0,207,255,.7);
+}
 
-    }
+.updating {
+  animation: pulse 1s infinite;
+}
 
-
-    .panel-count {
-
-      font-size: 10px;
-
-      color: #7d8799;
-
-      font-weight: 700;
-
-    }
-
-
-    /* ==========================================
-       TABLE
-    ========================================== */
-
-    .table-wrap {
-
-      overflow-x: auto;
-
-    }
-
-
-    table {
-
-      width: 100%;
-
-      border-collapse: collapse;
-
-      min-width: 600px;
-
-    }
-
-
-    th {
-
-      background:
-        #111827;
-
-      color: #8f99aa;
-
-      font-size: 9px;
-
-      font-weight: 800;
-
-      letter-spacing: .7px;
-
-      text-transform: uppercase;
-
-      text-align: left;
-
-      padding:
-        11px 12px;
-
-      white-space: nowrap;
-
-    }
-
-
-    td {
-
-      padding:
-        13px 12px;
-
-      border-bottom:
-        1px solid #1d2431;
-
-      font-size: 11px;
-
-      color: #d6dbe4;
-
-      vertical-align: middle;
-
-    }
-
-
-    tr:last-child td {
-
-      border-bottom: none;
-
-    }
-
-
-    .empty-state {
-
-      min-height: 330px;
-
-      display: flex;
-
-      flex-direction: column;
-
-      align-items: center;
-
-      justify-content: center;
-
-      text-align: center;
-
-      padding: 30px;
-
-      color: #687386;
-
-    }
-
-
-    .empty-icon {
-
-      font-size: 30px;
-
-      margin-bottom: 12px;
-
-      opacity: .7;
-
-    }
-
-
-    .empty-state strong {
-
-      color: #9ca3af;
-
-      font-size: 13px;
-
-    }
-
-
-    .empty-state p {
-
-      margin-top: 6px;
-
-      font-size: 11px;
-
-    }
-
-
-    /* ==========================================
-       BADGES
-    ========================================== */
-
-    .badge {
-
-      display: inline-flex;
-
-      align-items: center;
-
-      padding:
-        5px 9px;
-
-      border-radius: 20px;
-
-      font-size: 9px;
-
-      font-weight: 900;
-
-      letter-spacing: .3px;
-
-      white-space: nowrap;
-
-    }
-
-
-    .badge-success {
-
-      color: #4ade80;
-
-      background:
-        rgba(34,197,94,.12);
-
-      border:
-        1px solid rgba(34,197,94,.25);
-
-    }
-
-
-    .badge-warning {
-
-      color: #facc15;
-
-      background:
-        rgba(250,204,21,.10);
-
-      border:
-        1px solid rgba(250,204,21,.25);
-
-    }
-
-
-    .badge-danger {
-
-      color: #fb7185;
-
-      background:
-        rgba(229,9,32,.12);
-
-      border:
-        1px solid rgba(229,9,32,.25);
-
-    }
-
-
-    .badge-info {
-
-      color: #38d9ff;
-
-      background:
-        rgba(0,207,255,.10);
-
-      border:
-        1px solid rgba(0,207,255,.25);
-
-    }
-
-
-    .category {
-
-      display: inline-block;
-
-      padding:
-        4px 8px;
-
-      border-radius: 5px;
-
-      background:
-        rgba(255,255,255,.06);
-
-      color: #aeb8ca;
-
-      font-size: 9px;
-
-      font-weight: 800;
-
-    }
-
-
-    .name {
-
-      color: #ffffff;
-
-      font-weight: 800;
-
-    }
-
-
-    .id {
-
-      display: block;
-
-      margin-top: 3px;
-
-      color: #687386;
-
-      font-size: 9px;
-
-    }
-
-
-    /* ==========================================
-       FOOTER
-    ========================================== */
-
-    .footer {
-
-      text-align: center;
-
-      padding:
-        28px 20px 35px;
-
-      color: #586276;
-
-      font-size: 10px;
-
-      line-height: 1.6;
-
-    }
-
-
-    .footer strong {
-
-      color: #8993a5;
-
-    }
-
-
-    /* ==========================================
-       LOADING
-    ========================================== */
-
-    .loading {
-
-      color: #9ca3af;
-
-      font-size: 12px;
-
-      text-align: center;
-
-      padding: 35px;
-
-    }
-
-
-    /* ==========================================
-       RESPONSIVE
-    ========================================== */
-
-    @media (max-width: 1100px) {
-
-      .stats-grid {
-
-        grid-template-columns:
-          repeat(3, 1fr);
-
-      }
-
-      .content-grid {
-
-        grid-template-columns: 1fr;
-
-      }
-
-    }
-
-
-    @media (max-width: 700px) {
-
-      .header {
-
-        padding:
-          20px;
-
-        align-items:
-          flex-start;
-
-      }
-
-      .brand-text h1 {
-
-        font-size: 22px;
-
-      }
-
-      .online-badge {
-
-        display: none;
-
-      }
-
-      .container {
-
-        padding:
-          22px 16px 40px;
-
-      }
-
-      .page-heading {
-
-        align-items:
-          flex-start;
-
-        flex-direction:
-          column;
-
-      }
-
-      .last-updated {
-
-        text-align: left;
-
-      }
-
-      .stats-grid {
-
-        grid-template-columns:
-          repeat(2, 1fr);
-
-      }
-
-      .stat-card {
-
-        min-height: 115px;
-
-      }
-
-    }
-
-
-    @media (max-width: 430px) {
-
-      .stats-grid {
-
-        grid-template-columns:
-          1fr;
-
-      }
-
-      .brand-text h1 {
-
-        font-size: 19px;
-
-      }
-
-      .page-heading h2 {
-
-        font-size: 19px;
-
-      }
-
-    }
-
-  </style>
+</style>
 
 </head>
 
-
 <body>
 
-
-<!-- ==========================================
+<!-- =======================================================
      HEADER
-========================================== -->
+======================================================= -->
 
 <header class="header">
 
-  <div class="brand">
+  <div class="header-main">
 
-    <div class="brand-mark"></div>
-
-    <div class="brand-text">
+    <div class="brand">
 
       <h1>
         Klub Junction 1 Pool Fest
@@ -1064,27 +815,27 @@
 
     </div>
 
-  </div>
+    <div class="system-status">
 
+      <span class="status-dot"></span>
 
-  <div class="online-badge">
+      SYSTEM ONLINE
 
-    <span class="online-dot"></span>
-
-    SYSTEM ONLINE
+    </div>
 
   </div>
 
 </header>
 
 
-
-<!-- ==========================================
+<!-- =======================================================
      MAIN
-========================================== -->
+======================================================= -->
 
 <main class="container">
 
+
+  <!-- PAGE TITLE -->
 
   <div class="page-heading">
 
@@ -1100,18 +851,14 @@
 
     </div>
 
-
-    <div class="last-updated">
-
-      Last updated:
-      <span id="lastUpdated">
-        —
-      </span>
-
+    <div
+      id="lastUpdated"
+      class="last-updated"
+    >
+      Last updated: —
     </div>
 
   </div>
-
 
 
   <!-- CONNECTION -->
@@ -1122,19 +869,17 @@
 
       <span class="connection-dot"></span>
 
-      <span class="connection-text">
+      <span id="connectionText">
         Connected to event database
       </span>
 
     </div>
 
-
-    <div class="refresh-info">
+    <span class="auto-refresh">
       Auto-refresh: 10 seconds
-    </div>
+    </span>
 
   </div>
-
 
 
   <!-- REFRESH -->
@@ -1142,24 +887,24 @@
   <div class="refresh-row">
 
     <button
-      class="refresh-btn"
+      id="refreshButton"
+      class="refresh-button"
       onclick="loadDashboard()"
     >
-      ↻ REFRESH DASHBOARD
+      ↻ REFRESH
     </button>
 
   </div>
 
 
-
-  <!-- ========================================
-       KPI CARDS
-  ========================================= -->
+  <!-- =====================================================
+       STATISTICS
+  ====================================================== -->
 
   <section class="stats-grid">
 
 
-    <div class="stat-card total">
+    <div class="stat-card stat-total">
 
       <div class="stat-icon">
         👥
@@ -1179,8 +924,7 @@
     </div>
 
 
-
-    <div class="stat-card in">
+    <div class="stat-card stat-checkin">
 
       <div class="stat-icon">
         ✓
@@ -1200,8 +944,7 @@
     </div>
 
 
-
-    <div class="stat-card out">
+    <div class="stat-card stat-checkout">
 
       <div class="stat-icon">
         ↗
@@ -1221,8 +964,7 @@
     </div>
 
 
-
-    <div class="stat-card pending">
+    <div class="stat-card stat-notin">
 
       <div class="stat-icon">
         ◷
@@ -1242,11 +984,10 @@
     </div>
 
 
-
-    <div class="stat-card inside">
+    <div class="stat-card stat-inside">
 
       <div class="stat-icon">
-        ●
+        •
       </div>
 
       <div
@@ -1262,19 +1003,19 @@
 
     </div>
 
-
   </section>
 
 
-
-  <!-- ========================================
-       MAIN PANELS
-  ========================================= -->
+  <!-- =====================================================
+       CONTENT
+  ====================================================== -->
 
   <section class="content-grid">
 
 
-    <!-- CURRENTLY INSIDE -->
+    <!-- ===================================================
+         CURRENTLY INSIDE
+    ==================================================== -->
 
     <div class="panel">
 
@@ -1282,12 +1023,18 @@
 
         <div class="panel-title">
 
-          <span class="panel-title-dot"></span>
+          <span style="color:#00e676;">
+            ●
+          </span>
 
           Currently Inside
 
-        </div>
+          <span class="live-badge">
+            <span></span>
+            LIVE
+          </span>
 
+        </div>
 
         <div
           id="insideCount"
@@ -1299,22 +1046,13 @@
       </div>
 
 
-      <div id="insideTable">
+      <div
+        id="insideTable"
+        class="table-wrapper"
+      >
 
         <div class="empty-state">
-
-          <div class="empty-icon">
-            👤
-          </div>
-
-          <strong>
-            No attendees currently inside
-          </strong>
-
-          <p>
-            Checked-in attendees will appear here.
-          </p>
-
+          No attendees currently inside.
         </div>
 
       </div>
@@ -1322,8 +1060,9 @@
     </div>
 
 
-
-    <!-- RECENT ACTIVITY -->
+    <!-- ===================================================
+         RECENT ACTIVITY
+    ==================================================== -->
 
     <div class="panel">
 
@@ -1331,12 +1070,13 @@
 
         <div class="panel-title">
 
-          <span class="panel-title-dot activity"></span>
+          <span style="color:#ffd60a;">
+            ▣
+          </span>
 
           Recent Scan Activity
 
         </div>
-
 
         <div
           id="scanCount"
@@ -1348,22 +1088,13 @@
       </div>
 
 
-      <div id="activityTable">
+      <div
+        id="activityTable"
+        class="table-wrapper"
+      >
 
         <div class="empty-state">
-
-          <div class="empty-icon">
-            📋
-          </div>
-
-          <strong>
-            No scan activity
-          </strong>
-
-          <p>
-            Recent check-in and check-out activity will appear here.
-          </p>
-
+          No scan activity available.
         </div>
 
       </div>
@@ -1377,10 +1108,9 @@
 </main>
 
 
-
-<!-- ==========================================
+<!-- =======================================================
      FOOTER
-========================================== -->
+======================================================= -->
 
 <footer class="footer">
 
@@ -1392,46 +1122,648 @@
 
   Access Management System
 
-  <br>
-
-  <span id="footerStatus">
-    Live monitoring active
-  </span>
-
 </footer>
-
 
 
 <script>
 
-
-/* ==========================================
-   GOOGLE APPS SCRIPT API
-========================================== */
+/* =========================================================
+   API CONFIGURATION
+========================================================= */
 
 const API_URL =
   "https://script.google.com/macros/s/AKfycbxZFnq-AEx4GLg22mQKxagnZzjLq9Z9rx8c1GZB1SNvlt7_RPAOVi5DM6S-iu3ztjZP/exec";
 
 
+/* =========================================================
+   DASHBOARD LOADING
+========================================================= */
 
-/* ==========================================
-   FORMAT DATE
-========================================== */
+async function loadDashboard() {
 
-function formatDate(value) {
+  const refreshButton =
+    document.getElementById("refreshButton");
+
+  const connectionText =
+    document.getElementById("connectionText");
+
+  refreshButton.disabled = true;
+
+  refreshButton.textContent =
+    "↻ UPDATING...";
+
+  connectionText.textContent =
+    "Updating dashboard...";
+
+  connectionText.classList.add("updating");
+
+  try {
+
+    const url =
+      API_URL +
+      "?action=dashboard";
+
+    const response =
+      await fetch(url, {
+        method: "GET",
+        redirect: "follow",
+        cache: "no-store"
+      });
+
+    const responseText =
+      await response.text();
+
+    console.log(
+      "Dashboard API response:",
+      responseText
+    );
+
+    const data =
+      JSON.parse(responseText);
+
+    console.log(
+      "Dashboard data:",
+      data
+    );
+
+    if (!data.success) {
+
+      throw new Error(
+        data.message ||
+        data.error ||
+        "Dashboard request failed."
+      );
+
+    }
+
+    renderDashboard(data);
+
+    connectionText.textContent =
+      "Connected to event database";
+
+    document.getElementById("lastUpdated")
+      .textContent =
+      "Last updated: " +
+      formatCurrentTime();
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Dashboard error:",
+      error
+    );
+
+    connectionText.textContent =
+      "Unable to update dashboard";
+
+    connectionText.style.color =
+      "#ff5265";
+
+  }
+
+  finally {
+
+    refreshButton.disabled = false;
+
+    refreshButton.textContent =
+      "↻ REFRESH";
+
+    connectionText.classList.remove(
+      "updating"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER DASHBOARD
+========================================================= */
+
+function renderDashboard(data) {
+
+  const stats =
+    data.stats ||
+    data.dashboard ||
+    data;
+
+  const total =
+    Number(
+      stats.totalAttendees ??
+      stats.total ??
+      0
+    );
+
+  const checkedIn =
+    Number(
+      stats.checkedIn ??
+      stats.checked_in ??
+      0
+    );
+
+  const checkedOut =
+    Number(
+      stats.checkedOut ??
+      stats.checked_out ??
+      0
+    );
+
+  const notCheckedIn =
+    Number(
+      stats.notCheckedIn ??
+      stats.not_checked_in ??
+      Math.max(
+        0,
+        total - checkedIn - checkedOut
+      )
+    );
+
+  const currentlyInside =
+    Number(
+      stats.currentlyInside ??
+      stats.currently_inside ??
+      Math.max(
+        0,
+        checkedIn - checkedOut
+      )
+    );
+
+
+  document.getElementById(
+    "totalAttendees"
+  ).textContent = total;
+
+
+  document.getElementById(
+    "checkedIn"
+  ).textContent = checkedIn;
+
+
+  document.getElementById(
+    "checkedOut"
+  ).textContent = checkedOut;
+
+
+  document.getElementById(
+    "notCheckedIn"
+  ).textContent = notCheckedIn;
+
+
+  document.getElementById(
+    "currentlyInside"
+  ).textContent = currentlyInside;
+
+
+  document.getElementById(
+    "insideCount"
+  ).textContent =
+    currentlyInside +
+    (
+      currentlyInside === 1
+        ? " person"
+        : " people"
+    );
+
+
+  const inside =
+    data.currentlyInside ||
+    data.inside ||
+    stats.currentlyInsideList ||
+    [];
+
+
+  const activity =
+    data.recentActivity ||
+    data.recentScans ||
+    data.scanActivity ||
+    stats.recentActivity ||
+    [];
+
+
+  renderCurrentlyInside(
+    inside
+  );
+
+
+  renderActivity(
+    activity
+  );
+
+}
+
+
+/* =========================================================
+   CURRENTLY INSIDE
+========================================================= */
+
+function renderCurrentlyInside(list) {
+
+  const container =
+    document.getElementById(
+      "insideTable"
+    );
+
+  if (
+    !Array.isArray(list) ||
+    list.length === 0
+  ) {
+
+    container.innerHTML = `
+      <div class="empty-state">
+        No attendees currently inside.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  let html = `
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>ATTENDEE</th>
+
+          <th>CATEGORY</th>
+
+          <th>PASS ID</th>
+
+          <th>CHECK-IN TIME</th>
+
+          <th>STAFF</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+  `;
+
+
+  list.forEach(function(item) {
+
+    const name =
+      item.fullName ||
+      item.name ||
+      item.attendeeName ||
+      "Unknown";
+
+    const attendeeId =
+      item.attendeeId ||
+      item.attendee_id ||
+      item.id ||
+      "";
+
+    const category =
+      item.category ||
+      "GENERAL";
+
+    const passId =
+      item.passId ||
+      item.pass_id ||
+      "";
+
+    const checkInTime =
+      item.checkInTime ||
+      item.check_in_time ||
+      item.scanTime ||
+      "";
+
+    const staff =
+      item.staff ||
+      item.scannerUser ||
+      item.checkedInBy ||
+      "";
+
+
+    html += `
+
+      <tr>
+
+        <td>
+
+          <span class="attendee-name">
+            ${escapeHTML(name)}
+          </span>
+
+          <span class="attendee-id">
+            ${escapeHTML(attendeeId)}
+          </span>
+
+        </td>
+
+        <td>
+
+          <span class="category">
+            ${escapeHTML(category)}
+          </span>
+
+        </td>
+
+        <td>
+
+          <span class="pass-id">
+            ${escapeHTML(passId)}
+          </span>
+
+        </td>
+
+        <td>
+          ${escapeHTML(
+            formatDateTime(checkInTime)
+          )}
+        </td>
+
+        <td>
+
+          <span class="staff-name">
+            ${escapeHTML(staff)}
+          </span>
+
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
+
+  html += `
+
+      </tbody>
+
+    </table>
+
+  `;
+
+
+  container.innerHTML =
+    html;
+
+}
+
+
+/* =========================================================
+   RECENT SCAN ACTIVITY
+========================================================= */
+
+function renderActivity(list) {
+
+  const container =
+    document.getElementById(
+      "activityTable"
+    );
+
+  if (
+    !Array.isArray(list) ||
+    list.length === 0
+  ) {
+
+    document.getElementById(
+      "scanCount"
+    ).textContent =
+      "0 scans";
+
+    container.innerHTML = `
+
+      <div class="empty-state">
+        No scan activity available.
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "scanCount"
+  ).textContent =
+    list.length +
+    (
+      list.length === 1
+        ? " scan"
+        : " scans"
+    );
+
+
+  let html = `
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>ATTENDEE</th>
+
+          <th>ACTION</th>
+
+          <th>RESULT</th>
+
+          <th>TIME</th>
+
+          <th>STAFF</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+  `;
+
+
+  list.forEach(function(item) {
+
+    const attendee =
+      item.attendeeId ||
+      item.attendee_id ||
+      item.attendee ||
+      "Unknown";
+
+    const action =
+      String(
+        item.action || ""
+      ).toUpperCase();
+
+    const result =
+      String(
+        item.result || ""
+      ).toUpperCase();
+
+    const time =
+      item.scanTime ||
+      item.scan_time ||
+      item.time ||
+      "";
+
+    const staff =
+      item.scannerUser ||
+      item.staff ||
+      "";
+
+
+    let actionClass =
+      "badge-warning";
+
+
+    if (
+      action === "CHECK-IN"
+    ) {
+
+      actionClass =
+        "badge-checkin";
+
+    }
+
+    else if (
+      action === "CHECK-OUT"
+    ) {
+
+      actionClass =
+        "badge-checkout";
+
+    }
+
+
+    let resultClass =
+      "badge-warning";
+
+
+    if (
+      result === "SUCCESS"
+    ) {
+
+      resultClass =
+        "badge-success";
+
+    }
+
+    else if (
+      result.includes("DUPLICATE") ||
+      result.includes("NOT CHECKED") ||
+      result.includes("ALREADY")
+    ) {
+
+      resultClass =
+        "badge-warning";
+
+    }
+
+    else if (
+      result.includes("INVALID") ||
+      result.includes("ERROR") ||
+      result.includes("INACTIVE")
+    ) {
+
+      resultClass =
+        "badge-danger";
+
+    }
+
+
+    html += `
+
+      <tr>
+
+        <td>
+
+          <span class="attendee-name">
+            ${escapeHTML(attendee)}
+          </span>
+
+        </td>
+
+        <td>
+
+          <span class="badge ${actionClass}">
+            ${escapeHTML(action)}
+          </span>
+
+        </td>
+
+        <td>
+
+          <span class="badge ${resultClass}">
+            ${escapeHTML(result)}
+          </span>
+
+        </td>
+
+        <td>
+
+          ${escapeHTML(
+            formatDateTime(time)
+          )}
+
+        </td>
+
+        <td>
+
+          <span class="staff-name">
+            ${escapeHTML(staff)}
+          </span>
+
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
+
+  html += `
+
+      </tbody>
+
+    </table>
+
+  `;
+
+
+  container.innerHTML =
+    html;
+
+}
+
+
+/* =========================================================
+   DATE / TIME
+========================================================= */
+
+function formatDateTime(value) {
 
   if (!value) {
     return "—";
   }
+
 
   try {
 
     const date =
       new Date(value);
 
-    if (isNaN(date.getTime())) {
+    if (
+      isNaN(date.getTime())
+    ) {
+
       return String(value);
+
     }
+
 
     return date.toLocaleString(
       "en-GB",
@@ -1441,7 +1773,8 @@ function formatDate(value) {
         year: "numeric",
         hour: "2-digit",
         minute: "2-digit",
-        second: "2-digit"
+        second: "2-digit",
+        hour12: true
       }
     );
 
@@ -1456,14 +1789,43 @@ function formatDate(value) {
 }
 
 
+/* =========================================================
+   CURRENT TIME
+========================================================= */
 
-/* ==========================================
-   ESCAPE HTML
-========================================== */
+function formatCurrentTime() {
 
-function escapeHtml(value) {
+  return new Date()
+    .toLocaleTimeString(
+      "en-GB",
+      {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+      }
+    );
 
-  return String(value ?? "")
+}
+
+
+/* =========================================================
+   HTML SAFETY
+========================================================= */
+
+function escapeHTML(value) {
+
+  if (
+    value === null ||
+    value === undefined
+  ) {
+
+    return "";
+
+  }
+
+
+  return String(value)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
@@ -1473,339 +1835,24 @@ function escapeHtml(value) {
 }
 
 
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
 
-/* ==========================================
-   LOAD DASHBOARD
-========================================== */
+loadDashboard();
 
-async function loadDashboard() {
 
-  const footerStatus =
-    document.getElementById(
-      "footerStatus"
-    );
-
-  footerStatus.textContent =
-    "Updating dashboard...";
-
-
-  try {
-
-    const response =
-      await fetch(
-        API_URL +
-        "?action=dashboard" +
-        "&t=" +
-        Date.now(),
-        {
-          method: "GET",
-          redirect: "follow",
-          cache: "no-store"
-        }
-      );
-
-
-    const data =
-      await response.json();
-
-
-    console.log(
-      "Dashboard API response:",
-      data
-    );
-
-
-    if (!data) {
-
-      throw new Error(
-        "Empty dashboard response."
-      );
-
-    }
-
-
-    updateDashboard(data);
-
-
-    document.getElementById(
-      "lastUpdated"
-    ).textContent =
-      new Date().toLocaleTimeString();
-
-
-    footerStatus.textContent =
-      "Live monitoring active";
-
-
-  }
-
-  catch (error) {
-
-    console.error(
-      "Dashboard error:",
-      error
-    );
-
-
-    footerStatus.textContent =
-      "Dashboard connection error";
-
-  }
-
-}
-
-
-
-/* ==========================================
-   UPDATE DASHBOARD
-========================================== */
-
-function updateDashboard(data) {
-
-
-  /*
-   * CURRENT API RETURNS:
-   *
-   * total
-   * checkedIn
-   * notCheckedIn
-   *
-   * We calculate checked-out / inside
-   * from the available values.
-   */
-
-  const total =
-    Number(data.total || 0);
-
-
-  const checkedIn =
-    Number(data.checkedIn || 0);
-
-
-  const notCheckedIn =
-    Number(data.notCheckedIn || 0);
-
-
-  /*
-   * With the current backend,
-   * checkedIn represents attendees
-   * currently inside.
-   */
-
-  const currentlyInside =
-    checkedIn;
-
-
-  /*
-   * Display KPI values.
-   */
-
-  document.getElementById(
-    "totalAttendees"
-  ).textContent =
-    total;
-
-
-  document.getElementById(
-    "checkedIn"
-  ).textContent =
-    checkedIn;
-
-
-  document.getElementById(
-    "notCheckedIn"
-  ).textContent =
-    notCheckedIn;
-
-
-  document.getElementById(
-    "currentlyInside"
-  ).textContent =
-    currentlyInside;
-
-
-  /*
-   * The current dashboard API does not
-   * return a separate checked-out count.
-   *
-   * We therefore do not invent one.
-   */
-
-  document.getElementById(
-    "checkedOut"
-  ).textContent =
-    "—";
-
-
-  /*
-   * Update inside count.
-   */
-
-  document.getElementById(
-    "insideCount"
-  ).textContent =
-    currentlyInside +
-    (
-      currentlyInside === 1
-        ? " person"
-        : " people"
-    );
-
-
-  /*
-   * Current backend only returns
-   * summary statistics.
-   *
-   * Keep the activity panels
-   * presentation-ready without
-   * fabricating records.
-   */
-
-  renderEmptyInside(
-    currentlyInside
-  );
-
-  renderEmptyActivity();
-
-}
-
-
-
-/* ==========================================
-   CURRENTLY INSIDE
-========================================== */
-
-function renderEmptyInside(
-  count
-) {
-
-  const container =
-    document.getElementById(
-      "insideTable"
-    );
-
-
-  if (count === 0) {
-
-    container.innerHTML = `
-
-      <div class="empty-state">
-
-        <div class="empty-icon">
-          👤
-        </div>
-
-        <strong>
-          No attendees currently inside
-        </strong>
-
-        <p>
-          Checked-in attendees will appear here.
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  container.innerHTML = `
-
-    <div class="empty-state">
-
-      <div
-        class="empty-icon"
-        style="color:#22c55e;"
-      >
-        ●
-      </div>
-
-      <strong>
-        ${count}
-        ${
-          count === 1
-            ? "attendee is"
-            : "attendees are"
-        }
-        currently inside
-      </strong>
-
-      <p>
-        Live attendee details will be displayed here
-        when the dashboard data endpoint is expanded.
-      </p>
-
-    </div>
-
-  `;
-
-}
-
-
-
-/* ==========================================
-   RECENT ACTIVITY
-========================================== */
-
-function renderEmptyActivity() {
-
-  document.getElementById(
-    "activityTable"
-  ).innerHTML = `
-
-    <div class="empty-state">
-
-      <div class="empty-icon">
-        📋
-      </div>
-
-      <strong>
-        Recent scan activity
-      </strong>
-
-      <p>
-        Scan activity is being recorded in the
-        SCAN_LOG sheet.
-      </p>
-
-    </div>
-
-  `;
-
-}
-
-
-
-/* ==========================================
+/* =========================================================
    AUTO REFRESH
-========================================== */
+========================================================= */
 
 setInterval(
   loadDashboard,
   10000
 );
 
-
-
-/* ==========================================
-   START DASHBOARD
-========================================== */
-
-window.addEventListener(
-  "load",
-  function () {
-
-    loadDashboard();
-
-  }
-);
-
-
 </script>
 
-
 </body>
+
 </html>
