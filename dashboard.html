@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>
 Klub Junction 1 Pool Fest — Management Dashboard
@@ -24,6 +27,7 @@ Klub Junction 1 Pool Fest — Management Dashboard
 }
 
 body {
+
   font-family:
     Arial,
     Helvetica,
@@ -42,13 +46,16 @@ body {
   min-height: 100vh;
 
   font-size: 14px;
+
 }
+
 
 /* =========================================================
    HEADER
 ========================================================= */
 
 .header {
+
   position: relative;
 
   padding: 24px 32px 20px;
@@ -61,9 +68,11 @@ body {
       rgba(4, 7, 14, 0.98),
       rgba(5, 12, 25, 0.96)
     );
+
 }
 
 .header::before {
+
   content: "";
 
   position: absolute;
@@ -83,9 +92,11 @@ body {
     );
 
   border-radius: 10px;
+
 }
 
 .header-main {
+
   display: flex;
 
   justify-content: space-between;
@@ -93,25 +104,31 @@ body {
   align-items: center;
 
   gap: 20px;
+
 }
 
 .brand h1 {
+
   font-size: 28px;
 
   font-weight: 900;
 
   letter-spacing: -0.5px;
+
 }
 
 .brand p {
+
   margin-top: 6px;
 
   color: #aeb8c7;
 
   font-size: 12px;
+
 }
 
 .system-status {
+
   display: flex;
 
   align-items: center;
@@ -131,9 +148,11 @@ body {
   font-weight: 800;
 
   white-space: nowrap;
+
 }
 
 .status-dot {
+
   width: 8px;
   height: 8px;
 
@@ -143,13 +162,16 @@ body {
 
   box-shadow:
     0 0 10px rgba(0,230,118,0.9);
+
 }
+
 
 /* =========================================================
    MAIN
 ========================================================= */
 
 .container {
+
   width: 100%;
 
   max-width: 1500px;
@@ -157,9 +179,11 @@ body {
   margin: 0 auto;
 
   padding: 28px 34px 45px;
+
 }
 
 .page-heading {
+
   display: flex;
 
   justify-content: space-between;
@@ -167,33 +191,42 @@ body {
   align-items: flex-end;
 
   margin-bottom: 18px;
+
 }
 
 .page-heading h2 {
-  font-size: 19px;
+
+  font-size: 20px;
 
   font-weight: 900;
+
 }
 
 .page-heading p {
+
   margin-top: 5px;
 
   color: #8995a8;
 
   font-size: 12px;
+
 }
 
 .last-updated {
+
   color: #8290a4;
 
   font-size: 11px;
+
 }
+
 
 /* =========================================================
    CONNECTION BAR
 ========================================================= */
 
 .connection-bar {
+
   display: flex;
 
   justify-content: space-between;
@@ -217,17 +250,21 @@ body {
   font-size: 11px;
 
   font-weight: 700;
+
 }
 
 .connection-left {
+
   display: flex;
 
   align-items: center;
 
   gap: 9px;
+
 }
 
 .connection-dot {
+
   width: 7px;
   height: 7px;
 
@@ -237,27 +274,43 @@ body {
 
   box-shadow:
     0 0 8px rgba(0,230,118,0.9);
+
+}
+
+.connection-dot.error {
+
+  background: #ef233c;
+
+  box-shadow:
+    0 0 8px rgba(239,35,60,0.9);
+
 }
 
 .auto-refresh {
+
   color: #65748a;
 
   font-size: 10px;
+
 }
+
 
 /* =========================================================
    REFRESH BUTTON
 ========================================================= */
 
 .refresh-row {
+
   display: flex;
 
   justify-content: flex-end;
 
   margin-bottom: 12px;
+
 }
 
 .refresh-button {
+
   border: none;
 
   background: #e51e35;
@@ -275,25 +328,32 @@ body {
   cursor: pointer;
 
   transition: 0.2s;
+
 }
 
 .refresh-button:hover {
+
   background: #ff3048;
 
   transform: translateY(-1px);
+
 }
 
 .refresh-button:disabled {
+
   opacity: 0.6;
 
   cursor: wait;
+
 }
 
+
 /* =========================================================
-   STAT CARDS
+   STATISTICS
 ========================================================= */
 
 .stats-grid {
+
   display: grid;
 
   grid-template-columns:
@@ -302,9 +362,11 @@ body {
   gap: 14px;
 
   margin-bottom: 18px;
+
 }
 
 .stat-card {
+
   position: relative;
 
   min-height: 116px;
@@ -326,9 +388,11 @@ body {
     0 10px 30px rgba(0,0,0,0.25);
 
   overflow: hidden;
+
 }
 
 .stat-card::before {
+
   content: "";
 
   position: absolute;
@@ -338,6 +402,7 @@ body {
 
   width: 100%;
   height: 2px;
+
 }
 
 .stat-total::before {
@@ -361,6 +426,7 @@ body {
 }
 
 .stat-icon {
+
   width: 34px;
   height: 34px;
 
@@ -377,17 +443,21 @@ body {
   font-size: 17px;
 
   margin-bottom: 8px;
+
 }
 
 .stat-number {
+
   font-size: 27px;
 
   font-weight: 900;
 
   line-height: 1;
+
 }
 
 .stat-label {
+
   margin-top: 6px;
 
   color: #8f9bad;
@@ -397,26 +467,32 @@ body {
   font-weight: 900;
 
   letter-spacing: 0.7px;
+
 }
 
+
 /* =========================================================
-   TWO COLUMN AREA
+   CONTENT
 ========================================================= */
 
 .content-grid {
+
   display: grid;
 
   grid-template-columns:
     1fr 1.05fr;
 
   gap: 16px;
+
 }
+
 
 /* =========================================================
    PANELS
 ========================================================= */
 
 .panel {
+
   min-width: 0;
 
   border: 1px solid #202a3a;
@@ -434,9 +510,11 @@ body {
     0 12px 40px rgba(0,0,0,0.28);
 
   overflow: hidden;
+
 }
 
 .panel-header {
+
   display: flex;
 
   justify-content: space-between;
@@ -446,9 +524,11 @@ body {
   padding: 17px 18px;
 
   border-bottom: 1px solid #202a3a;
+
 }
 
 .panel-title {
+
   display: flex;
 
   align-items: center;
@@ -458,9 +538,11 @@ body {
   font-size: 15px;
 
   font-weight: 900;
+
 }
 
 .live-badge {
+
   display: inline-flex;
 
   align-items: center;
@@ -480,48 +562,62 @@ body {
   font-size: 9px;
 
   font-weight: 900;
+
 }
 
 .live-badge span {
+
   width: 5px;
   height: 5px;
 
   background: #00e676;
 
   border-radius: 50%;
+
 }
 
 .panel-count {
+
   color: #8190a5;
 
   font-size: 10px;
 
   font-weight: 700;
+
 }
+
 
 /* =========================================================
    TABLE
 ========================================================= */
 
 .table-wrapper {
+
   width: 100%;
 
   overflow-x: auto;
+
 }
 
 table {
+
   width: 100%;
 
   border-collapse: collapse;
 
   min-width: 620px;
+
 }
 
 thead {
-  background: rgba(255,255,255,0.025);
+
+  background:
+    rgba(255,255,255,0.025);
+
 }
 
 th {
+
   padding: 12px 10px;
 
   color: #77869d;
@@ -535,31 +631,41 @@ th {
   letter-spacing: 0.7px;
 
   white-space: nowrap;
+
 }
 
 td {
+
   padding: 12px 10px;
 
-  border-top: 1px solid rgba(255,255,255,0.055);
+  border-top:
+    1px solid rgba(255,255,255,0.055);
 
   color: #e6eaf0;
 
   font-size: 10px;
 
   white-space: nowrap;
+
 }
 
 tbody tr:hover {
-  background: rgba(255,255,255,0.025);
+
+  background:
+    rgba(255,255,255,0.025);
+
 }
 
 .attendee-name {
+
   font-weight: 800;
 
   color: #ffffff;
+
 }
 
 .attendee-id {
+
   display: block;
 
   margin-top: 3px;
@@ -567,41 +673,51 @@ tbody tr:hover {
   color: #67758b;
 
   font-size: 8px;
+
 }
 
 .category {
+
   display: inline-block;
 
   padding: 4px 7px;
 
   border-radius: 5px;
 
-  background: rgba(255,255,255,0.07);
+  background:
+    rgba(255,255,255,0.07);
 
   color: #d8deea;
 
   font-size: 8px;
 
   font-weight: 800;
+
 }
 
 .pass-id {
+
   color: #b9c7db;
 
   font-family: monospace;
 
   font-size: 9px;
+
 }
 
 .staff-name {
+
   color: #aeb9ca;
+
 }
 
+
 /* =========================================================
-   ACTION / RESULT BADGES
+   BADGES
 ========================================================= */
 
 .badge {
+
   display: inline-block;
 
   padding: 5px 8px;
@@ -615,67 +731,115 @@ tbody tr:hover {
   letter-spacing: 0.2px;
 
   white-space: nowrap;
+
 }
 
 .badge-checkin {
+
   color: #00e676;
 
-  background: rgba(0,230,118,0.09);
+  background:
+    rgba(0,230,118,0.09);
 
-  border: 1px solid rgba(0,230,118,0.22);
+  border:
+    1px solid rgba(0,230,118,0.22);
+
 }
 
 .badge-checkout {
+
   color: #ff4d62;
 
-  background: rgba(239,35,60,0.09);
+  background:
+    rgba(239,35,60,0.09);
 
-  border: 1px solid rgba(239,35,60,0.22);
+  border:
+    1px solid rgba(239,35,60,0.22);
+
 }
 
 .badge-success {
+
   color: #00e676;
 
-  background: rgba(0,230,118,0.09);
+  background:
+    rgba(0,230,118,0.09);
 
-  border: 1px solid rgba(0,230,118,0.22);
+  border:
+    1px solid rgba(0,230,118,0.22);
+
 }
 
 .badge-warning {
+
   color: #ffd60a;
 
-  background: rgba(255,214,10,0.09);
+  background:
+    rgba(255,214,10,0.09);
 
-  border: 1px solid rgba(255,214,10,0.22);
+  border:
+    1px solid rgba(255,214,10,0.22);
+
 }
 
 .badge-danger {
+
   color: #ff5265;
 
-  background: rgba(239,35,60,0.09);
+  background:
+    rgba(239,35,60,0.09);
 
-  border: 1px solid rgba(239,35,60,0.22);
+  border:
+    1px solid rgba(239,35,60,0.22);
+
 }
 
+
 /* =========================================================
-   EMPTY STATE
+   EMPTY / ERROR
 ========================================================= */
 
 .empty-state {
-  padding: 50px 20px;
+
+  padding: 55px 20px;
 
   text-align: center;
 
   color: #66748a;
 
   font-size: 11px;
+
 }
+
+.error-state {
+
+  padding: 35px 20px;
+
+  text-align: center;
+
+  color: #ff5265;
+
+  font-size: 11px;
+
+}
+
+.error-state strong {
+
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #ffffff;
+
+}
+
 
 /* =========================================================
    FOOTER
 ========================================================= */
 
 .footer {
+
   text-align: center;
 
   padding: 35px 20px 20px;
@@ -685,21 +849,34 @@ tbody tr:hover {
   font-size: 9px;
 
   line-height: 1.6;
+
 }
 
 .footer strong {
+
   color: #77859b;
+
 }
+
 
 /* =========================================================
    LOADING
 ========================================================= */
 
 .loading {
+
   opacity: 0.55;
 
   pointer-events: none;
+
 }
+
+.updating {
+
+  animation: pulse 1s infinite;
+
+}
+
 
 /* =========================================================
    RESPONSIVE
@@ -708,12 +885,16 @@ tbody tr:hover {
 @media (max-width: 1100px) {
 
   .stats-grid {
+
     grid-template-columns:
       repeat(3, minmax(0, 1fr));
+
   }
 
   .content-grid {
+
     grid-template-columns: 1fr;
+
   }
 
 }
@@ -721,34 +902,48 @@ tbody tr:hover {
 @media (max-width: 700px) {
 
   .header {
-    padding: 22px 18px 18px;
+
+    padding:
+      22px 18px 18px;
+
   }
 
   .header-main {
+
     align-items: flex-start;
 
     flex-direction: column;
+
   }
 
   .brand h1 {
+
     font-size: 22px;
+
   }
 
   .container {
-    padding: 22px 14px 35px;
+
+    padding:
+      22px 14px 35px;
+
   }
 
   .page-heading {
+
     align-items: flex-start;
 
     flex-direction: column;
 
     gap: 8px;
+
   }
 
   .stats-grid {
+
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
+
   }
 
 }
@@ -756,14 +951,19 @@ tbody tr:hover {
 @media (max-width: 430px) {
 
   .stats-grid {
+
     grid-template-columns: 1fr;
+
   }
 
   .stat-card {
+
     min-height: 100px;
+
   }
 
 }
+
 
 /* =========================================================
    ANIMATION
@@ -785,15 +985,13 @@ tbody tr:hover {
 
 }
 
-.updating {
-  animation: pulse 1s infinite;
-}
-
 </style>
 
 </head>
 
+
 <body>
+
 
 <!-- =======================================================
      HEADER
@@ -835,8 +1033,6 @@ tbody tr:hover {
 <main class="container">
 
 
-  <!-- PAGE TITLE -->
-
   <div class="page-heading">
 
     <div>
@@ -867,10 +1063,13 @@ tbody tr:hover {
 
     <div class="connection-left">
 
-      <span class="connection-dot"></span>
+      <span
+        id="connectionDot"
+        class="connection-dot"
+      ></span>
 
       <span id="connectionText">
-        Connected to event database
+        Connecting to event database...
       </span>
 
     </div>
@@ -891,7 +1090,7 @@ tbody tr:hover {
       class="refresh-button"
       onclick="loadDashboard()"
     >
-      ↻ REFRESH
+      ↻ REFRESH DASHBOARD
     </button>
 
   </div>
@@ -1003,6 +1202,7 @@ tbody tr:hover {
 
     </div>
 
+
   </section>
 
 
@@ -1013,9 +1213,7 @@ tbody tr:hover {
   <section class="content-grid">
 
 
-    <!-- ===================================================
-         CURRENTLY INSIDE
-    ==================================================== -->
+    <!-- CURRENTLY INSIDE -->
 
     <div class="panel">
 
@@ -1052,7 +1250,7 @@ tbody tr:hover {
       >
 
         <div class="empty-state">
-          No attendees currently inside.
+          Loading attendee information...
         </div>
 
       </div>
@@ -1060,9 +1258,7 @@ tbody tr:hover {
     </div>
 
 
-    <!-- ===================================================
-         RECENT ACTIVITY
-    ==================================================== -->
+    <!-- RECENT ACTIVITY -->
 
     <div class="panel">
 
@@ -1070,8 +1266,8 @@ tbody tr:hover {
 
         <div class="panel-title">
 
-          <span style="color:#ffd60a;">
-            ▣
+          <span style="color:#00d9ff;">
+            ●
           </span>
 
           Recent Scan Activity
@@ -1094,7 +1290,7 @@ tbody tr:hover {
       >
 
         <div class="empty-state">
-          No scan activity available.
+          Loading scan activity...
         </div>
 
       </div>
@@ -1122,6 +1318,10 @@ tbody tr:hover {
 
   Access Management System
 
+  <br>
+
+  Live monitoring active
+
 </footer>
 
 
@@ -1136,16 +1336,26 @@ const API_URL =
 
 
 /* =========================================================
-   DASHBOARD LOADING
+   LOAD DASHBOARD
 ========================================================= */
 
 async function loadDashboard() {
 
   const refreshButton =
-    document.getElementById("refreshButton");
+    document.getElementById(
+      "refreshButton"
+    );
 
   const connectionText =
-    document.getElementById("connectionText");
+    document.getElementById(
+      "connectionText"
+    );
+
+  const connectionDot =
+    document.getElementById(
+      "connectionDot"
+    );
+
 
   refreshButton.disabled = true;
 
@@ -1155,7 +1365,13 @@ async function loadDashboard() {
   connectionText.textContent =
     "Updating dashboard...";
 
-  connectionText.classList.add("updating");
+  connectionText.style.color =
+    "#ffd60a";
+
+  connectionDot.classList.remove(
+    "error"
+  );
+
 
   try {
 
@@ -1163,30 +1379,84 @@ async function loadDashboard() {
       API_URL +
       "?action=dashboard";
 
+
     const response =
-      await fetch(url, {
-        method: "GET",
-        redirect: "follow",
-        cache: "no-store"
-      });
+      await fetch(
+        url,
+        {
+          method: "GET",
+          redirect: "follow",
+          cache: "no-store"
+        }
+      );
+
 
     const responseText =
       await response.text();
+
 
     console.log(
       "Dashboard API response:",
       responseText
     );
 
-    const data =
-      JSON.parse(responseText);
+
+    if (!responseText) {
+
+      throw new Error(
+        "The backend returned an empty response."
+      );
+
+    }
+
+
+    let data;
+
+
+    try {
+
+      data =
+        JSON.parse(
+          responseText
+        );
+
+    }
+
+    catch (jsonError) {
+
+      console.error(
+        "Invalid JSON:",
+        responseText
+      );
+
+      throw new Error(
+        "Backend returned invalid JSON."
+      );
+
+    }
+
 
     console.log(
       "Dashboard data:",
       data
     );
 
-    if (!data.success) {
+
+    /*
+     * Some versions of the backend return
+     * success:true while the dashboard
+     * statistics are at the root level.
+     *
+     * Other versions may return a
+     * dashboard/stats object.
+     *
+     * Therefore we do NOT require
+     * success === true here.
+     */
+
+    if (
+      data.success === false
+    ) {
 
       throw new Error(
         data.message ||
@@ -1196,15 +1466,25 @@ async function loadDashboard() {
 
     }
 
-    renderDashboard(data);
+
+    renderDashboard(
+      data
+    );
+
 
     connectionText.textContent =
       "Connected to event database";
 
-    document.getElementById("lastUpdated")
-      .textContent =
+    connectionText.style.color =
+      "#8ff0b8";
+
+
+    document.getElementById(
+      "lastUpdated"
+    ).textContent =
       "Last updated: " +
       formatCurrentTime();
+
 
   }
 
@@ -1215,24 +1495,65 @@ async function loadDashboard() {
       error
     );
 
+
     connectionText.textContent =
       "Unable to update dashboard";
 
     connectionText.style.color =
       "#ff5265";
 
+
+    connectionDot.classList.add(
+      "error"
+    );
+
+
+    document.getElementById(
+      "insideTable"
+    ).innerHTML = `
+
+      <div class="error-state">
+
+        <strong>
+          Dashboard data unavailable
+        </strong>
+
+        ${escapeHTML(
+          error.message ||
+          "Unable to retrieve dashboard data."
+        )}
+
+      </div>
+
+    `;
+
+
+    document.getElementById(
+      "activityTable"
+    ).innerHTML = `
+
+      <div class="error-state">
+
+        <strong>
+          Scan activity unavailable
+        </strong>
+
+        Please refresh the dashboard.
+
+      </div>
+
+    `;
+
   }
+
 
   finally {
 
-    refreshButton.disabled = false;
+    refreshButton.disabled =
+      false;
 
     refreshButton.textContent =
-      "↻ REFRESH";
-
-    connectionText.classList.remove(
-      "updating"
-    );
+      "↻ REFRESH DASHBOARD";
 
   }
 
@@ -1245,10 +1566,22 @@ async function loadDashboard() {
 
 function renderDashboard(data) {
 
+
+  /*
+   * Support several possible
+   * response structures.
+   */
+
   const stats =
     data.stats ||
     data.dashboard ||
+    data.data ||
     data;
+
+
+  /* =======================================================
+     STATISTICS
+  ======================================================= */
 
   const total =
     Number(
@@ -1257,12 +1590,14 @@ function renderDashboard(data) {
       0
     );
 
+
   const checkedIn =
     Number(
       stats.checkedIn ??
       stats.checked_in ??
       0
     );
+
 
   const checkedOut =
     Number(
@@ -1271,15 +1606,6 @@ function renderDashboard(data) {
       0
     );
 
-  const notCheckedIn =
-    Number(
-      stats.notCheckedIn ??
-      stats.not_checked_in ??
-      Math.max(
-        0,
-        total - checkedIn - checkedOut
-      )
-    );
 
   const currentlyInside =
     Number(
@@ -1292,29 +1618,45 @@ function renderDashboard(data) {
     );
 
 
+  const notCheckedIn =
+    Number(
+      stats.notCheckedIn ??
+      stats.not_checked_in ??
+      Math.max(
+        0,
+        total - checkedIn
+      )
+    );
+
+
   document.getElementById(
     "totalAttendees"
-  ).textContent = total;
+  ).textContent =
+    total;
 
 
   document.getElementById(
     "checkedIn"
-  ).textContent = checkedIn;
+  ).textContent =
+    checkedIn;
 
 
   document.getElementById(
     "checkedOut"
-  ).textContent = checkedOut;
+  ).textContent =
+    checkedOut;
 
 
   document.getElementById(
     "notCheckedIn"
-  ).textContent = notCheckedIn;
+  ).textContent =
+    notCheckedIn;
 
 
   document.getElementById(
     "currentlyInside"
-  ).textContent = currentlyInside;
+  ).textContent =
+    currentlyInside;
 
 
   document.getElementById(
@@ -1328,28 +1670,38 @@ function renderDashboard(data) {
     );
 
 
-  const inside =
-    data.currentlyInside ||
+  /*
+   * Currently inside list.
+   */
+
+  const insideList =
+    data.currentlyInsideList ||
+    data.currentlyInsideRecords ||
     data.inside ||
     stats.currentlyInsideList ||
     [];
 
 
-  const activity =
-    data.recentActivity ||
+  /*
+   * Recent scan activity.
+   */
+
+  const recentScans =
     data.recentScans ||
+    data.recentActivity ||
     data.scanActivity ||
+    stats.recentScans ||
     stats.recentActivity ||
     [];
 
 
   renderCurrentlyInside(
-    inside
+    insideList
   );
 
 
   renderActivity(
-    activity
+    recentScans
   );
 
 }
@@ -1359,12 +1711,15 @@ function renderDashboard(data) {
    CURRENTLY INSIDE
 ========================================================= */
 
-function renderCurrentlyInside(list) {
+function renderCurrentlyInside(
+  list
+) {
 
   const container =
     document.getElementById(
       "insideTable"
     );
+
 
   if (
     !Array.isArray(list) ||
@@ -1372,9 +1727,13 @@ function renderCurrentlyInside(list) {
   ) {
 
     container.innerHTML = `
+
       <div class="empty-state">
-        No attendees currently inside.
+
+        No attendees are currently inside.
+
       </div>
+
     `;
 
     return;
@@ -1409,93 +1768,119 @@ function renderCurrentlyInside(list) {
   `;
 
 
-  list.forEach(function(item) {
-
-    const name =
-      item.fullName ||
-      item.name ||
-      item.attendeeName ||
-      "Unknown";
-
-    const attendeeId =
-      item.attendeeId ||
-      item.attendee_id ||
-      item.id ||
-      "";
-
-    const category =
-      item.category ||
-      "GENERAL";
-
-    const passId =
-      item.passId ||
-      item.pass_id ||
-      "";
-
-    const checkInTime =
-      item.checkInTime ||
-      item.check_in_time ||
-      item.scanTime ||
-      "";
-
-    const staff =
-      item.staff ||
-      item.scannerUser ||
-      item.checkedInBy ||
-      "";
+  list.forEach(
+    function(item) {
 
 
-    html += `
+      const name =
+        item.fullName ||
+        item.name ||
+        item.attendeeName ||
+        "Unknown";
 
-      <tr>
 
-        <td>
+      const attendeeId =
+        item.attendeeId ||
+        item.attendee_id ||
+        item.id ||
+        "";
 
-          <span class="attendee-name">
-            ${escapeHTML(name)}
-          </span>
 
-          <span class="attendee-id">
-            ${escapeHTML(attendeeId)}
-          </span>
+      const category =
+        item.category ||
+        "GENERAL";
 
-        </td>
 
-        <td>
+      const passId =
+        item.passId ||
+        item.pass_id ||
+        "";
 
-          <span class="category">
-            ${escapeHTML(category)}
-          </span>
 
-        </td>
+      const checkInTime =
+        item.checkInTime ||
+        item.check_in_time ||
+        item.scanTime ||
+        "";
 
-        <td>
 
-          <span class="pass-id">
-            ${escapeHTML(passId)}
-          </span>
+      const staff =
+        item.checkedInBy ||
+        item.scannerUser ||
+        item.staff ||
+        "";
 
-        </td>
 
-        <td>
-          ${escapeHTML(
-            formatDateTime(checkInTime)
-          )}
-        </td>
+      html += `
 
-        <td>
+        <tr>
 
-          <span class="staff-name">
-            ${escapeHTML(staff)}
-          </span>
+          <td>
 
-        </td>
+            <span
+              class="attendee-name"
+            >
+              ${escapeHTML(name)}
+            </span>
 
-      </tr>
+            <span
+              class="attendee-id"
+            >
+              ${escapeHTML(attendeeId)}
+            </span>
 
-    `;
+          </td>
 
-  });
+
+          <td>
+
+            <span
+              class="category"
+            >
+              ${escapeHTML(category)}
+            </span>
+
+          </td>
+
+
+          <td>
+
+            <span
+              class="pass-id"
+            >
+              ${escapeHTML(passId)}
+            </span>
+
+          </td>
+
+
+          <td>
+
+            ${escapeHTML(
+              formatDateTime(
+                checkInTime
+              )
+            )}
+
+          </td>
+
+
+          <td>
+
+            <span
+              class="staff-name"
+            >
+              ${escapeHTML(staff)}
+            </span>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
 
 
   html += `
@@ -1517,12 +1902,15 @@ function renderCurrentlyInside(list) {
    RECENT SCAN ACTIVITY
 ========================================================= */
 
-function renderActivity(list) {
+function renderActivity(
+  list
+) {
 
   const container =
     document.getElementById(
       "activityTable"
     );
+
 
   if (
     !Array.isArray(list) ||
@@ -1534,10 +1922,13 @@ function renderActivity(list) {
     ).textContent =
       "0 scans";
 
+
     container.innerHTML = `
 
       <div class="empty-state">
+
         No scan activity available.
+
       </div>
 
     `;
@@ -1547,12 +1938,23 @@ function renderActivity(list) {
   }
 
 
+  /*
+   * Show the latest 20 scans.
+   */
+
+  const recent =
+    list.slice(
+      0,
+      20
+    );
+
+
   document.getElementById(
     "scanCount"
   ).textContent =
-    list.length +
+    recent.length +
     (
-      list.length === 1
+      recent.length === 1
         ? " scan"
         : " scans"
     );
@@ -1585,144 +1987,192 @@ function renderActivity(list) {
   `;
 
 
-  list.forEach(function(item) {
-
-    const attendee =
-      item.attendeeId ||
-      item.attendee_id ||
-      item.attendee ||
-      "Unknown";
-
-    const action =
-      String(
-        item.action || ""
-      ).toUpperCase();
-
-    const result =
-      String(
-        item.result || ""
-      ).toUpperCase();
-
-    const time =
-      item.scanTime ||
-      item.scan_time ||
-      item.time ||
-      "";
-
-    const staff =
-      item.scannerUser ||
-      item.staff ||
-      "";
+  recent.forEach(
+    function(item) {
 
 
-    let actionClass =
-      "badge-warning";
+      const attendee =
+        item.attendeeId ||
+        item.attendee_id ||
+        item.attendee ||
+        "Unknown";
 
 
-    if (
-      action === "CHECK-IN"
-    ) {
-
-      actionClass =
-        "badge-checkin";
-
-    }
-
-    else if (
-      action === "CHECK-OUT"
-    ) {
-
-      actionClass =
-        "badge-checkout";
-
-    }
+      const action =
+        String(
+          item.action ||
+          ""
+        ).toUpperCase();
 
 
-    let resultClass =
-      "badge-warning";
+      const result =
+        String(
+          item.result ||
+          ""
+        ).toUpperCase();
 
 
-    if (
-      result === "SUCCESS"
-    ) {
+      const time =
+        item.scanTime ||
+        item.scan_time ||
+        item.time ||
+        "";
 
-      resultClass =
-        "badge-success";
 
-    }
+      const staff =
+        item.scannerUser ||
+        item.staff ||
+        item.checkedInBy ||
+        item.scannerId ||
+        "";
 
-    else if (
-      result.includes("DUPLICATE") ||
-      result.includes("NOT CHECKED") ||
-      result.includes("ALREADY")
-    ) {
 
-      resultClass =
+      let actionClass =
         "badge-warning";
 
+
+      if (
+        action === "CHECK-IN"
+      ) {
+
+        actionClass =
+          "badge-checkin";
+
+      }
+
+      else if (
+        action === "CHECK-OUT"
+      ) {
+
+        actionClass =
+          "badge-checkout";
+
+      }
+
+
+      let resultClass =
+        "badge-warning";
+
+
+      if (
+        result === "SUCCESS"
+      ) {
+
+        resultClass =
+          "badge-success";
+
+      }
+
+      else if (
+        result.includes(
+          "DUPLICATE"
+        ) ||
+        result.includes(
+          "NOT CHECKED"
+        ) ||
+        result.includes(
+          "ALREADY"
+        )
+      ) {
+
+        resultClass =
+          "badge-warning";
+
+      }
+
+      else if (
+        result.includes(
+          "INVALID"
+        ) ||
+        result.includes(
+          "ERROR"
+        ) ||
+        result.includes(
+          "INACTIVE"
+        ) ||
+        result.includes(
+          "DEACTIVATED"
+        )
+      ) {
+
+        resultClass =
+          "badge-danger";
+
+      }
+
+
+      html += `
+
+        <tr>
+
+          <td>
+
+            <span
+              class="attendee-name"
+            >
+              ${escapeHTML(
+                attendee
+              )}
+            </span>
+
+          </td>
+
+
+          <td>
+
+            <span
+              class="badge ${actionClass}"
+            >
+              ${escapeHTML(
+                action
+              )}
+            </span>
+
+          </td>
+
+
+          <td>
+
+            <span
+              class="badge ${resultClass}"
+            >
+              ${escapeHTML(
+                result
+              )}
+            </span>
+
+          </td>
+
+
+          <td>
+
+            ${escapeHTML(
+              formatDateTime(
+                time
+              )
+            )}
+
+          </td>
+
+
+          <td>
+
+            <span
+              class="staff-name"
+            >
+              ${escapeHTML(
+                staff
+              )}
+            </span>
+
+          </td>
+
+        </tr>
+
+      `;
+
     }
-
-    else if (
-      result.includes("INVALID") ||
-      result.includes("ERROR") ||
-      result.includes("INACTIVE")
-    ) {
-
-      resultClass =
-        "badge-danger";
-
-    }
-
-
-    html += `
-
-      <tr>
-
-        <td>
-
-          <span class="attendee-name">
-            ${escapeHTML(attendee)}
-          </span>
-
-        </td>
-
-        <td>
-
-          <span class="badge ${actionClass}">
-            ${escapeHTML(action)}
-          </span>
-
-        </td>
-
-        <td>
-
-          <span class="badge ${resultClass}">
-            ${escapeHTML(result)}
-          </span>
-
-        </td>
-
-        <td>
-
-          ${escapeHTML(
-            formatDateTime(time)
-          )}
-
-        </td>
-
-        <td>
-
-          <span class="staff-name">
-            ${escapeHTML(staff)}
-          </span>
-
-        </td>
-
-      </tr>
-
-    `;
-
-  });
+  );
 
 
   html += `
@@ -1744,10 +2194,14 @@ function renderActivity(list) {
    DATE / TIME
 ========================================================= */
 
-function formatDateTime(value) {
+function formatDateTime(
+  value
+) {
 
   if (!value) {
+
     return "—";
+
   }
 
 
@@ -1756,11 +2210,16 @@ function formatDateTime(value) {
     const date =
       new Date(value);
 
+
     if (
-      isNaN(date.getTime())
+      isNaN(
+        date.getTime()
+      )
     ) {
 
-      return String(value);
+      return String(
+        value
+      );
 
     }
 
@@ -1782,7 +2241,9 @@ function formatDateTime(value) {
 
   catch (error) {
 
-    return String(value);
+    return String(
+      value
+    );
 
   }
 
@@ -1813,7 +2274,9 @@ function formatCurrentTime() {
    HTML SAFETY
 ========================================================= */
 
-function escapeHTML(value) {
+function escapeHTML(
+  value
+) {
 
   if (
     value === null ||
@@ -1826,11 +2289,31 @@ function escapeHTML(value) {
 
 
   return String(value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
