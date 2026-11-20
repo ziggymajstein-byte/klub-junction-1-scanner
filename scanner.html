@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -17,6 +18,7 @@
     type="text/javascript">
   </script>
 
+
   <style>
 
     * {
@@ -25,7 +27,9 @@
       padding: 0;
     }
 
+
     :root {
+
       --black: #05070d;
       --dark: #0b0f18;
       --panel: #111722;
@@ -43,10 +47,14 @@
       --green: #00e676;
 
       --purple: #7c3aed;
+
     }
 
+
     body {
+
       min-height: 100vh;
+
       background:
         radial-gradient(
           circle at top right,
@@ -66,13 +74,16 @@
         Arial,
         Helvetica,
         sans-serif;
+
     }
+
 
     /* ==========================================
        HEADER
     ========================================== */
 
     .header {
+
       position: relative;
 
       background:
@@ -90,9 +101,12 @@
 
       box-shadow:
         0 8px 30px rgba(0,0,0,0.35);
+
     }
 
+
     .header-accent {
+
       width: 80px;
       height: 4px;
 
@@ -107,24 +121,36 @@
           var(--yellow),
           var(--red)
         );
+
     }
+
 
     .header h1 {
+
       font-size: 28px;
+
       font-weight: 900;
+
       letter-spacing: -0.5px;
+
     }
 
+
     .header p {
+
       margin-top: 7px;
 
       color: #b7c0d0;
 
       font-size: 13px;
+
       letter-spacing: 0.5px;
+
     }
 
+
     .event-tag {
+
       display: inline-block;
 
       margin-top: 12px;
@@ -140,33 +166,43 @@
       color: #dbe4f2;
 
       font-size: 11px;
+
       font-weight: 800;
 
       letter-spacing: 1px;
+
     }
 
+
     /* ==========================================
-       MAIN CONTAINER
+       MAIN
     ========================================== */
 
     .container {
+
       width: 100%;
+
       max-width: 620px;
 
       margin: 0 auto;
 
       padding: 20px 15px 35px;
+
     }
 
+
     /* ==========================================
-       STATUS BAR
+       BACKEND STATUS
     ========================================== */
 
     .backend-status {
+
       display: flex;
 
       align-items: center;
+
       justify-content: center;
+
       gap: 9px;
 
       padding: 12px 15px;
@@ -185,10 +221,14 @@
       color: #9fffc8;
 
       font-size: 12px;
+
       font-weight: 700;
+
     }
 
+
     .status-dot {
+
       width: 8px;
       height: 8px;
 
@@ -198,13 +238,16 @@
 
       box-shadow:
         0 0 10px var(--green);
+
     }
+
 
     /* ==========================================
        CARD
     ========================================== */
 
     .card {
+
       background:
         linear-gradient(
           145deg,
@@ -222,262 +265,133 @@
 
       box-shadow:
         0 15px 35px rgba(0,0,0,0.25);
+
     }
 
+
     /* ==========================================
-       LOGIN
+       STAFF SESSION
     ========================================== */
 
-    .section-header {
+    .staff-session {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+    }
+
+
+    .staff-info {
+
       display: flex;
 
       align-items: center;
 
       gap: 12px;
 
-      margin-bottom: 18px;
+      min-width: 0;
+
     }
 
-    .section-icon {
-      width: 42px;
-      height: 42px;
+
+    .staff-icon {
+
+      width: 45px;
+      height: 45px;
+
+      flex-shrink: 0;
 
       display: flex;
 
       align-items: center;
       justify-content: center;
 
-      border-radius: 11px;
+      border-radius: 12px;
 
       background:
-        rgba(124,58,237,0.15);
+        rgba(0,230,118,0.10);
 
-      border: 1px solid rgba(124,58,237,0.35);
+      border:
+        1px solid rgba(0,230,118,0.30);
 
-      font-size: 20px;
+      font-size: 21px;
+
     }
 
-    .section-header h2 {
-      font-size: 18px;
+
+    .staff-details h2 {
+
+      font-size: 16px;
+
       font-weight: 900;
+
     }
 
-    .section-header p {
+
+    .staff-details p {
+
       margin-top: 4px;
 
       color: var(--muted);
 
-      font-size: 12px;
-    }
-
-    .login-grid {
-      display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap: 12px;
-    }
-
-    .input-group {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .input-group label {
-      margin-bottom: 7px;
-
-      color: #c8d1df;
-
       font-size: 11px;
-      font-weight: 800;
 
-      text-transform: uppercase;
-
-      letter-spacing: 0.8px;
     }
 
-    .input-group input {
-      width: 100%;
 
-      padding: 14px;
+    .logout-button {
 
-      border: 1px solid #30394a;
+      width: auto;
 
-      border-radius: 9px;
+      min-width: 100px;
 
-      outline: none;
+      margin: 0;
 
-      background: #080b12;
-
-      color: white;
-
-      font-size: 15px;
-
-      transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
-    }
-
-    .input-group input:focus {
-      border-color: var(--cyan);
-
-      box-shadow:
-        0 0 0 3px rgba(22,217,255,0.10);
-    }
-
-    .login-button {
-      width: 100%;
-
-      margin-top: 14px;
-
-      padding: 14px;
-
-      border: none;
-
-      border-radius: 9px;
+      padding: 11px 15px;
 
       background:
         linear-gradient(
           135deg,
-          #f20d2f,
-          #c90725
+          #252b38,
+          #171c26
         );
 
-      color: white;
+      border:
+        1px solid #394355;
 
-      font-size: 14px;
+      box-shadow: none;
 
-      font-weight: 900;
+      font-size: 11px;
 
-      letter-spacing: 0.7px;
+    }
 
-      cursor: pointer;
+
+    .logout-button:hover {
 
       box-shadow:
-        0 8px 20px rgba(242,13,47,0.25);
+        0 8px 20px rgba(0,0,0,0.25);
 
-      transition:
-        transform 0.15s,
-        box-shadow 0.15s;
     }
 
-    .login-button:hover {
-      transform: translateY(-1px);
-
-      box-shadow:
-        0 10px 25px rgba(242,13,47,0.35);
-    }
-
-    .login-button:active {
-      transform: translateY(0);
-    }
-
-    .staff-status {
-      margin-top: 12px;
-
-      padding: 10px;
-
-      border-radius: 8px;
-
-      background: rgba(255,255,255,0.04);
-
-      text-align: center;
-
-      color: #9aa6ba;
-
-      font-size: 12px;
-
-      font-weight: 700;
-    }
-
-    .staff-status.logged-in {
-      color: #8fffc0;
-
-      border:
-        1px solid rgba(0,230,118,0.2);
-
-      background:
-        rgba(0,230,118,0.06);
-    }
-
-    .staff-status.error {
-      color: #ff9cae;
-
-      border:
-        1px solid rgba(242,13,47,0.2);
-
-      background:
-        rgba(242,13,47,0.06);
-    }
 
     /* ==========================================
-       SCANNER
-    ========================================== */
-
-    .scanner-card {
-      padding: 20px 15px 18px;
-    }
-
-    .scanner-header {
-      text-align: center;
-
-      margin-bottom: 15px;
-    }
-
-    .scanner-header h2 {
-      font-size: 20px;
-      font-weight: 900;
-    }
-
-    .scanner-header p {
-      margin-top: 6px;
-
-      color: var(--muted);
-
-      font-size: 12px;
-    }
-
-    .scanner-frame {
-      position: relative;
-
-      overflow: hidden;
-
-      width: 100%;
-
-      min-height: 320px;
-
-      padding: 10px;
-
-      border:
-        1px solid #313b4e;
-
-      border-radius: 14px;
-
-      background:
-        #05070c;
-    }
-
-    #reader {
-      width: 100%;
-      max-width: 420px;
-
-      margin: 0 auto;
-    }
-
-    #reader video {
-      border-radius: 10px !important;
-    }
-
-    /* ==========================================
-       SCAN MODE
+       MODE
     ========================================== */
 
     .mode-card {
+
       padding: 16px;
+
     }
 
+
     .mode-label {
+
       text-align: center;
 
       color: var(--muted);
@@ -491,18 +405,23 @@
       text-transform: uppercase;
 
       margin-bottom: 10px;
+
     }
+
 
     .mode-buttons {
+
       display: grid;
 
-      grid-template-columns:
-        1fr 1fr;
+      grid-template-columns: 1fr 1fr;
 
       gap: 10px;
+
     }
 
+
     .mode-button {
+
       padding: 15px 10px;
 
       border-radius: 10px;
@@ -518,9 +437,12 @@
       font-weight: 900;
 
       cursor: pointer;
+
     }
 
+
     .mode-button.checkin-active {
+
       background:
         rgba(0,230,118,0.12);
 
@@ -531,9 +453,12 @@
 
       box-shadow:
         inset 0 0 20px rgba(0,230,118,0.04);
+
     }
 
+
     .mode-button.checkout-active {
+
       background:
         rgba(242,13,47,0.12);
 
@@ -544,9 +469,12 @@
 
       box-shadow:
         inset 0 0 20px rgba(242,13,47,0.04);
+
     }
 
+
     .current-mode {
+
       margin-top: 12px;
 
       text-align: center;
@@ -556,17 +484,102 @@
       font-weight: 800;
 
       color: #d5dce8;
+
     }
 
+
     .current-mode span {
+
       color: var(--green);
+
     }
+
+
+    /* ==========================================
+       SCANNER
+    ========================================== */
+
+    .scanner-card {
+
+      padding: 20px 15px 18px;
+
+    }
+
+
+    .scanner-header {
+
+      text-align: center;
+
+      margin-bottom: 15px;
+
+    }
+
+
+    .scanner-header h2 {
+
+      font-size: 20px;
+
+      font-weight: 900;
+
+    }
+
+
+    .scanner-header p {
+
+      margin-top: 6px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+    }
+
+
+    .scanner-frame {
+
+      position: relative;
+
+      overflow: hidden;
+
+      width: 100%;
+
+      min-height: 320px;
+
+      padding: 10px;
+
+      border: 1px solid #313b4e;
+
+      border-radius: 14px;
+
+      background: #05070c;
+
+    }
+
+
+    #reader {
+
+      width: 100%;
+
+      max-width: 420px;
+
+      margin: 0 auto;
+
+    }
+
+
+    #reader video {
+
+      border-radius: 10px !important;
+
+    }
+
 
     /* ==========================================
        RESULT
     ========================================== */
 
     .result {
+
       display: none;
 
       padding: 20px;
@@ -578,9 +591,12 @@
       text-align: center;
 
       border: 1px solid;
+
     }
 
+
     .result.success {
+
       display: block;
 
       background:
@@ -590,9 +606,12 @@
         rgba(0,230,118,0.45);
 
       color: #b7ffd4;
+
     }
 
+
     .result.danger {
+
       display: block;
 
       background:
@@ -602,9 +621,12 @@
         rgba(242,13,47,0.45);
 
       color: #ffb5c1;
+
     }
 
+
     .result.warning {
+
       display: block;
 
       background:
@@ -614,23 +636,36 @@
         rgba(255,210,28,0.45);
 
       color: #ffe98a;
+
     }
 
+
     .result h3 {
+
       margin-bottom: 7px;
 
       font-size: 19px;
 
       font-weight: 900;
+
     }
 
+
     .result-message {
+
       font-size: 13px;
 
       color: #d8dee9;
+
     }
 
-    .attendee {
+
+    /* ==========================================
+       PASS INFORMATION
+    ========================================== */
+
+    .pass-info {
+
       margin-top: 15px;
 
       padding: 14px;
@@ -644,46 +679,61 @@
         1px solid rgba(255,255,255,0.08);
 
       text-align: left;
+
     }
 
-    .attendee-row {
+
+    .pass-row {
+
       display: flex;
 
       justify-content: space-between;
 
       gap: 12px;
 
-      padding: 7px 0;
+      padding: 8px 0;
 
       border-bottom:
         1px solid rgba(255,255,255,0.06);
 
       font-size: 12px;
+
     }
 
-    .attendee-row:last-child {
+
+    .pass-row:last-child {
+
       border-bottom: none;
+
     }
 
-    .attendee-label {
+
+    .pass-label {
+
       color: #8e9aac;
 
       font-weight: 700;
+
     }
 
-    .attendee-value {
+
+    .pass-value {
+
       color: white;
 
       font-weight: 800;
 
       text-align: right;
+
     }
+
 
     /* ==========================================
        FOOTER
     ========================================== */
 
     .footer {
+
       text-align: center;
 
       padding: 10px 20px 25px;
@@ -693,11 +743,16 @@
       font-size: 10px;
 
       line-height: 1.7;
+
     }
 
+
     .footer strong {
+
       color: #9aa6ba;
+
     }
+
 
     /* ==========================================
        MOBILE
@@ -706,50 +761,79 @@
     @media (max-width: 560px) {
 
       .header {
+
         padding: 18px 15px;
+
       }
+
 
       .header h1 {
+
         font-size: 23px;
+
       }
+
 
       .container {
+
         padding:
           15px 12px 30px;
+
       }
+
 
       .card {
+
         padding: 16px;
+
       }
 
-      .login-grid {
-        grid-template-columns: 1fr;
+
+      .staff-session {
+
+        align-items: flex-start;
+
       }
+
+
+      .logout-button {
+
+        min-width: 85px;
+
+      }
+
 
       .scanner-frame {
+
         min-height: 290px;
+
       }
 
-      .mode-buttons {
-        grid-template-columns: 1fr 1fr;
-      }
 
-      .attendee-row {
+      .pass-row {
+
         flex-direction: column;
+
         gap: 3px;
+
       }
 
-      .attendee-value {
+
+      .pass-value {
+
         text-align: left;
+
       }
 
     }
 
   </style>
+
 </head>
 
 
 <body>
+
 
   <!-- ==========================================
        HEADER
@@ -796,84 +880,42 @@
 
 
     <!-- ==========================================
-         STAFF LOGIN
+         LOGGED-IN STAFF
     ========================================== -->
 
     <section class="card">
 
-      <div class="section-header">
+      <div class="staff-session">
 
-        <div class="section-icon">
-          🔐
-        </div>
+        <div class="staff-info">
 
-        <div>
+          <div class="staff-icon">
+            👤
+          </div>
 
-          <h2>
-            Staff Login
-          </h2>
+          <div class="staff-details">
 
-          <p>
-            Authenticate before scanning passes.
-          </p>
+            <h2 id="loggedStaffName">
+              Authorized Staff
+            </h2>
 
-        </div>
+            <p id="loggedStaffRole">
+              Scanner session active.
+            </p>
 
-      </div>
-
-
-      <div class="login-grid">
-
-        <div class="input-group">
-
-          <label for="scannerId">
-            Staff ID
-          </label>
-
-          <input
-            type="text"
-            id="scannerId"
-            placeholder="e.g. STAFF-002"
-            value="STAFF-002"
-            autocomplete="off"
-          >
+          </div>
 
         </div>
 
 
-        <div class="input-group">
+        <button
+          type="button"
+          class="login-button logout-button"
+          onclick="logoutStaff()"
+        >
+          🔓 LOGOUT
+        </button>
 
-          <label for="staffPin">
-            PIN
-          </label>
-
-          <input
-            type="password"
-            id="staffPin"
-            placeholder="Enter PIN"
-            maxlength="6"
-            inputmode="numeric"
-          >
-
-        </div>
-
-      </div>
-
-
-      <button
-        type="button"
-        class="login-button"
-        onclick="loginStaff()"
-      >
-        🔐 LOGIN TO SCANNER
-      </button>
-
-
-      <div
-        id="staffStatus"
-        class="staff-status"
-      >
-        Not logged in
       </div>
 
     </section>
@@ -962,6 +1004,7 @@
 
       <h3 id="resultTitle"></h3>
 
+
       <div
         id="resultMessage"
         class="result-message"
@@ -969,8 +1012,8 @@
 
 
       <div
-        id="attendeeInfo"
-        class="attendee"
+        id="passInfo"
+        class="pass-info"
       ></div>
 
     </section>
@@ -1003,6 +1046,7 @@
 
 <script>
 
+
   /* ==========================================
      GOOGLE APPS SCRIPT WEB APP
   ========================================== */
@@ -1023,31 +1067,174 @@
 
 
   /* ==========================================
-     SET MODE
+     READ STAFF SESSION
+  ========================================== */
+
+  function loadStaffSession() {
+
+    const savedStaff =
+      sessionStorage.getItem(
+        "loggedInStaff"
+      );
+
+
+    if (!savedStaff) {
+
+      return false;
+
+    }
+
+
+    try {
+
+      loggedInStaff =
+        JSON.parse(savedStaff);
+
+    }
+
+    catch (error) {
+
+      console.error(
+        "Invalid staff session:",
+        error
+      );
+
+      sessionStorage.removeItem(
+        "loggedInStaff"
+      );
+
+      loggedInStaff = null;
+
+      return false;
+
+    }
+
+
+    if (
+      !loggedInStaff ||
+      !loggedInStaff.staffId
+    ) {
+
+      sessionStorage.removeItem(
+        "loggedInStaff"
+      );
+
+      loggedInStaff = null;
+
+      return false;
+
+    }
+
+
+    return true;
+
+  }
+
+
+  /* ==========================================
+     VERIFY STAFF SESSION
+  ========================================== */
+
+  function verifyStaffSession() {
+
+    if (!loadStaffSession()) {
+
+      window.location.href =
+        "index.html";
+
+      return false;
+
+    }
+
+
+    const nameElement =
+      document.getElementById(
+        "loggedStaffName"
+      );
+
+
+    const roleElement =
+      document.getElementById(
+        "loggedStaffRole"
+      );
+
+
+    nameElement.textContent =
+      loggedInStaff.fullName ||
+      loggedInStaff.staffId ||
+      "Authorized Staff";
+
+
+    roleElement.textContent =
+      (
+        loggedInStaff.role ||
+        "Scanner"
+      ) +
+      " • " +
+      loggedInStaff.staffId;
+
+
+    return true;
+
+  }
+
+
+  /* ==========================================
+     LOGOUT
+  ========================================== */
+
+  function logoutStaff() {
+
+    sessionStorage.removeItem(
+      "loggedInStaff"
+    );
+
+    loggedInStaff = null;
+
+    window.location.href =
+      "index.html";
+
+  }
+
+
+  /* ==========================================
+     SET SCAN MODE
   ========================================== */
 
   function setMode(mode) {
 
     currentMode = mode;
 
+
     const checkinButton =
-      document.getElementById("checkinButton");
+      document.getElementById(
+        "checkinButton"
+      );
+
 
     const checkoutButton =
-      document.getElementById("checkoutButton");
+      document.getElementById(
+        "checkoutButton"
+      );
+
 
     const modeDisplay =
-      document.getElementById("modeDisplay");
+      document.getElementById(
+        "modeDisplay"
+      );
 
 
     checkinButton.className =
       "mode-button";
 
+
     checkoutButton.className =
       "mode-button";
 
 
-    if (mode === "CHECK-IN") {
+    if (
+      mode === "CHECK-IN"
+    ) {
 
       checkinButton.classList.add(
         "checkin-active"
@@ -1071,10 +1258,12 @@
 
 
     modeDisplay.innerHTML =
-      `Current mode:
-       <span style="color:${modeColor}">
-       ${mode}
-       </span>`;
+      `
+        Current mode:
+        <span style="color:${modeColor}">
+          ${mode}
+        </span>
+      `;
 
 
     clearResult();
@@ -1089,27 +1278,34 @@
   function clearResult() {
 
     const result =
-      document.getElementById("result");
+      document.getElementById(
+        "result"
+      );
 
-    result.className = "result";
+
+    result.className =
+      "result";
+
 
     document.getElementById(
       "resultTitle"
     ).textContent = "";
 
+
     document.getElementById(
       "resultMessage"
     ).textContent = "";
 
+
     document.getElementById(
-      "attendeeInfo"
+      "passInfo"
     ).innerHTML = "";
 
   }
 
 
   /* ==========================================
-     BACKEND TEST
+     TEST BACKEND
   ========================================== */
 
   async function testBackend() {
@@ -1119,13 +1315,17 @@
         "backendStatusText"
       );
 
+
     try {
 
       const response =
-        await fetch(API_URL, {
-          method: "GET",
-          cache: "no-store"
-        });
+        await fetch(
+          API_URL,
+          {
+            method: "GET",
+            cache: "no-store"
+          }
+        );
 
 
       if (response.ok) {
@@ -1147,184 +1347,13 @@
     catch (error) {
 
       /*
-       * Apps Script can still be online even
-       * when browser CORS handling prevents
+       * Apps Script may still be working
+       * even when browser CORS prevents
        * reading the response.
        */
 
       statusText.textContent =
         "Backend deployed • Scanner ready";
-
-    }
-
-  }
-
-
-  /* ==========================================
-     STAFF LOGIN
-  ========================================== */
-
-  async function loginStaff() {
-
-    const staffId =
-      document
-        .getElementById("scannerId")
-        .value
-        .trim();
-
-
-    const pin =
-      document
-        .getElementById("staffPin")
-        .value
-        .trim();
-
-
-    const status =
-      document.getElementById(
-        "staffStatus"
-      );
-
-
-    if (!staffId || !pin) {
-
-      status.textContent =
-        "Please enter Staff ID and PIN.";
-
-      status.className =
-        "staff-status error";
-
-      return;
-
-    }
-
-
-    status.textContent =
-      "Authenticating staff account...";
-
-    status.className =
-      "staff-status";
-
-
-    try {
-
-      /*
-       * IMPORTANT:
-       * Backend doGet() uses:
-       *
-       * action=staffLogin
-       */
-
-      const url =
-        API_URL +
-        "?action=staffLogin" +
-        "&staffId=" +
-        encodeURIComponent(staffId) +
-        "&pin=" +
-        encodeURIComponent(pin);
-
-
-      const response =
-        await fetch(url, {
-          method: "GET",
-          redirect: "follow",
-          cache: "no-store"
-        });
-
-
-      const responseText =
-        await response.text();
-
-
-      console.log(
-        "Staff login response:",
-        responseText
-      );
-
-
-      let data;
-
-
-      try {
-
-        data =
-          JSON.parse(responseText);
-
-      }
-
-      catch (jsonError) {
-
-        throw new Error(
-          "Backend did not return valid JSON."
-        );
-
-      }
-
-
-      if (data.success) {
-
-        loggedInStaff =
-          data.staff;
-
-
-        status.textContent =
-          "✓ Logged in: " +
-          data.staff.fullName +
-          " (" +
-          data.staff.role +
-          ")";
-
-
-        status.className =
-          "staff-status logged-in";
-
-
-        document.getElementById(
-          "staffPin"
-        ).value = "";
-
-
-        clearResult();
-
-      }
-
-      else {
-
-        loggedInStaff = null;
-
-
-        status.textContent =
-          "✗ " +
-          (
-            data.message ||
-            "Invalid Staff ID or PIN."
-          );
-
-
-        status.className =
-          "staff-status error";
-
-      }
-
-    }
-
-    catch (error) {
-
-      loggedInStaff = null;
-
-
-      status.textContent =
-        "Staff authentication failed.";
-
-
-      status.className =
-        "staff-status error";
-
-
-      console.error(
-        "Staff login error:",
-        error
-      );
 
     }
 
@@ -1355,9 +1384,9 @@
       );
 
 
-    const attendeeInfo =
+    const passInfo =
       document.getElementById(
-        "attendeeInfo"
+        "passInfo"
       );
 
 
@@ -1365,9 +1394,9 @@
       "result";
 
 
-    /*
-     * SUCCESS
-     */
+    /* ========================================
+       SUCCESS
+    ======================================== */
 
     if (data.success) {
 
@@ -1388,28 +1417,22 @@
     }
 
 
-    /*
-     * FAILURE
-     */
+    /* ========================================
+       FAILURE
+    ======================================== */
 
     else {
 
-      /*
-       * Warnings such as:
-       *
-       * ALREADY INSIDE
-       * NOT CHECKED IN
-       * DUPLICATE CHECK-IN
-       *
-       * should be visually different
-       * from a connection error.
-       */
-
       const warningCodes = [
+
         "ALREADY_INSIDE",
+
         "NOT_CHECKED_IN",
+
         "DUPLICATE_CHECK_IN",
+
         "DUPLICATE_CHECK_OUT"
+
       ];
 
 
@@ -1449,68 +1472,90 @@
     }
 
 
-    /*
-     * ATTENDEE INFORMATION
-     */
+    /* ========================================
+       PASS INFORMATION ONLY
+       
+       IMPORTANT:
+       We deliberately DO NOT display:
+       - Name
+       - Phone
+       - Attendee identity
+       
+       Only pass ID and status.
+    ======================================== */
 
     if (data.attendee) {
 
-      attendeeInfo.innerHTML = `
+      passInfo.innerHTML = `
 
-        <div class="attendee-row">
+        <div class="pass-row">
 
-          <span class="attendee-label">
-            Name
-          </span>
-
-          <span class="attendee-value">
-            ${escapeHtml(
-              data.attendee.fullName || ""
-            )}
-          </span>
-
-        </div>
-
-
-        <div class="attendee-row">
-
-          <span class="attendee-label">
-            Category
-          </span>
-
-          <span class="attendee-value">
-            ${escapeHtml(
-              data.attendee.category || ""
-            )}
-          </span>
-
-        </div>
-
-
-        <div class="attendee-row">
-
-          <span class="attendee-label">
+          <span class="pass-label">
             Pass ID
           </span>
 
-          <span class="attendee-value">
+          <span class="pass-value">
             ${escapeHtml(
-              data.attendee.passId || ""
+              data.attendee.passId ||
+              data.passId ||
+              ""
             )}
           </span>
 
         </div>
 
 
-        <div class="attendee-row">
+        <div class="pass-row">
 
-          <span class="attendee-label">
+          <span class="pass-label">
             Status
           </span>
 
-          <span class="attendee-value">
+          <span class="pass-value">
             ${escapeHtml(
-              data.attendee.status || ""
+              data.attendee.status ||
+              data.status ||
+              ""
+            )}
+          </span>
+
+        </div>
+
+      `;
+
+    }
+
+    else if (
+      data.passId ||
+      data.status
+    ) {
+
+      passInfo.innerHTML = `
+
+        <div class="pass-row">
+
+          <span class="pass-label">
+            Pass ID
+          </span>
+
+          <span class="pass-value">
+            ${escapeHtml(
+              data.passId || ""
+            )}
+          </span>
+
+        </div>
+
+
+        <div class="pass-row">
+
+          <span class="pass-label">
+            Status
+          </span>
+
+          <span class="pass-value">
+            ${escapeHtml(
+              data.status || ""
             )}
           </span>
 
@@ -1530,22 +1575,27 @@
   function escapeHtml(value) {
 
     return String(value)
+
       .replace(
         /&/g,
         "&amp;"
       )
+
       .replace(
         /</g,
         "&lt;"
       )
+
       .replace(
         />/g,
         "&gt;"
       )
+
       .replace(
         /"/g,
         "&quot;"
       )
+
       .replace(
         /'/g,
         "&#039;"
@@ -1572,18 +1622,23 @@
     processingScan = true;
 
 
-    /*
-     * REQUIRE LOGIN
-     */
+    /* ========================================
+       REQUIRE LOGIN
+    ======================================== */
 
     if (!loggedInStaff) {
 
       alert(
-        "Please login with your Staff ID and PIN first."
+        "Your staff session has expired. Please login again."
       );
 
 
       processingScan = false;
+
+
+      window.location.href =
+        "index.html";
+
 
       return;
 
@@ -1595,7 +1650,8 @@
 
 
     const scannerUser =
-      loggedInStaff.fullName;
+      loggedInStaff.fullName ||
+      loggedInStaff.staffId;
 
 
     const result =
@@ -1604,23 +1660,35 @@
       );
 
 
+    const resultTitle =
+      document.getElementById(
+        "resultTitle"
+      );
+
+
+    const resultMessage =
+      document.getElementById(
+        "resultMessage"
+      );
+
+
     result.className =
       "result warning";
 
 
-    document.getElementById(
-      "resultTitle"
-    ).textContent =
+    resultTitle.textContent =
       "PROCESSING SCAN";
 
 
-    document.getElementById(
-      "resultMessage"
-    ).textContent =
+    resultMessage.textContent =
       "Verifying pass. Please wait...";
 
 
     try {
+
+      /* ======================================
+         DETERMINE ACTION
+      ====================================== */
 
       const action =
         currentMode === "CHECK-IN"
@@ -1628,24 +1696,49 @@
           : "checkOut";
 
 
+      /* ======================================
+         BUILD API URL
+      ====================================== */
+
       const url =
         API_URL +
         "?action=" +
-        encodeURIComponent(action) +
+        encodeURIComponent(
+          action
+        ) +
         "&qrValue=" +
-        encodeURIComponent(qrValue) +
+        encodeURIComponent(
+          qrValue
+        ) +
         "&scannerId=" +
-        encodeURIComponent(scannerId) +
+        encodeURIComponent(
+          scannerId
+        ) +
         "&scannerUser=" +
-        encodeURIComponent(scannerUser);
+        encodeURIComponent(
+          scannerUser
+        );
 
+
+      console.log(
+        "Sending scan to backend:",
+        url
+      );
+
+
+      /* ======================================
+         CALL BACKEND
+      ====================================== */
 
       const response =
-        await fetch(url, {
-          method: "GET",
-          redirect: "follow",
-          cache: "no-store"
-        });
+        await fetch(
+          url,
+          {
+            method: "GET",
+            redirect: "follow",
+            cache: "no-store"
+          }
+        );
 
 
       const responseText =
@@ -1658,25 +1751,34 @@
       );
 
 
+      /* ======================================
+         PARSE JSON
+      ====================================== */
+
       let data;
 
 
       try {
 
         data =
-          JSON.parse(responseText);
+          JSON.parse(
+            responseText
+          );
 
       }
 
       catch (jsonError) {
 
         throw new Error(
-          "Backend did not return valid JSON: " +
-          responseText
+          "Backend did not return valid JSON."
         );
 
       }
 
+
+      /* ======================================
+         DISPLAY RESULT
+      ====================================== */
 
       showResult(data);
 
@@ -1684,33 +1786,29 @@
 
     catch (error) {
 
-      result.className =
-        "result danger";
-
-
-      document.getElementById(
-        "resultTitle"
-      ).textContent =
-        "CONNECTION ERROR";
-
-
-      document.getElementById(
-        "resultMessage"
-      ).textContent =
-        "Unable to communicate with the event database.";
-
-
       console.error(
         "Scan error:",
         error
       );
 
+
+      result.className =
+        "result danger";
+
+
+      resultTitle.textContent =
+        "CONNECTION ERROR";
+
+
+      resultMessage.textContent =
+        "Unable to communicate with the event database.";
+
     }
 
 
-    /*
-     * Prevent immediate duplicate scans.
-     */
+    /* ========================================
+       PREVENT IMMEDIATE DUPLICATE SCANS
+    ======================================== */
 
     setTimeout(
       function () {
@@ -1725,13 +1823,19 @@
 
 
   /* ==========================================
-     QR SCANNER SUCCESS
+     QR SCAN SUCCESS
   ========================================== */
 
   function onScanSuccess(
     decodedText,
     decodedResult
   ) {
+
+    console.log(
+      "QR detected:",
+      decodedText
+    );
+
 
     processQRCode(
       decodedText
@@ -1741,10 +1845,12 @@
 
 
   /* ==========================================
-     QR SCANNER FAILURE
+     QR SCAN FAILURE
   ========================================== */
 
-  function onScanFailure(error) {
+  function onScanFailure(
+    error
+  ) {
 
     /*
      * Normal camera scanning failures
@@ -1755,10 +1861,46 @@
 
 
   /* ==========================================
-     START SCANNER
+     START QR SCANNER
   ========================================== */
 
   function startScanner() {
+
+    if (
+      typeof Html5QrcodeScanner ===
+      "undefined"
+    ) {
+
+      console.error(
+        "Html5QrcodeScanner library failed to load."
+      );
+
+
+      const result =
+        document.getElementById(
+          "result"
+        );
+
+
+      result.className =
+        "result danger";
+
+
+      document.getElementById(
+        "resultTitle"
+      ).textContent =
+        "SCANNER ERROR";
+
+
+      document.getElementById(
+        "resultMessage"
+      ).textContent =
+        "QR scanner library could not be loaded.";
+
+      return;
+
+    }
+
 
     const scanner =
       new Html5QrcodeScanner(
@@ -1768,14 +1910,20 @@
           fps: 10,
 
           qrbox: {
+
             width: 250,
+
             height: 250
+
           },
 
           rememberLastUsedCamera: true,
 
           supportedScanTypes: [
-            Html5QrcodeScanType.SCAN_TYPE_CAMERA
+
+            Html5QrcodeScanType
+              .SCAN_TYPE_CAMERA
+
           ]
 
         },
@@ -1800,7 +1948,32 @@
     "load",
     function () {
 
+      /*
+       * STEP 1:
+       * Verify login first.
+       */
+
+      if (
+        !verifyStaffSession()
+      ) {
+
+        return;
+
+      }
+
+
+      /*
+       * STEP 2:
+       * Test backend.
+       */
+
       testBackend();
+
+
+      /*
+       * STEP 3:
+       * Start QR scanner.
+       */
 
       startScanner();
 
@@ -1809,5 +1982,7 @@
 
 </script>
 
+
 </body>
+
 </html>
