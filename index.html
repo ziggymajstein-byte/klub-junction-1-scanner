@@ -11,12 +11,6 @@
 
   <title>Klub Junction 1 Pool Fest — Access Scanner</title>
 
-  <!-- QR SCANNER LIBRARY -->
-  <script
-    src="https://unpkg.com/html5-qrcode"
-    type="text/javascript">
-  </script>
-
   <style>
 
     * {
@@ -879,104 +873,7 @@
     </section>
 
 
-    <!-- ==========================================
-         SCAN MODE
-    ========================================== -->
-
-    <section class="card mode-card">
-
-      <div class="mode-label">
-        Access Mode
-      </div>
-
-
-      <div class="mode-buttons">
-
-        <button
-          id="checkinButton"
-          class="mode-button checkin-active"
-          onclick="setMode('CHECK-IN')"
-        >
-          ✓ CHECK IN
-        </button>
-
-
-        <button
-          id="checkoutButton"
-          class="mode-button"
-          onclick="setMode('CHECK-OUT')"
-        >
-          ↗ CHECK OUT
-        </button>
-
-      </div>
-
-
-      <div
-        id="modeDisplay"
-        class="current-mode"
-      >
-        Current mode:
-        <span>CHECK-IN</span>
-      </div>
-
-    </section>
-
-
-    <!-- ==========================================
-         QR SCANNER
-    ========================================== -->
-
-    <section class="card scanner-card">
-
-      <div class="scanner-header">
-
-        <h2>
-          Scan Event Pass
-        </h2>
-
-        <p>
-          Point the camera at the QR code printed on the pass.
-        </p>
-
-      </div>
-
-
-      <div class="scanner-frame">
-
-        <div id="reader"></div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ==========================================
-         SCAN RESULT
-    ========================================== -->
-
-    <section
-      id="result"
-      class="result"
-    >
-
-      <h3 id="resultTitle"></h3>
-
-      <div
-        id="resultMessage"
-        class="result-message"
-      ></div>
-
-
-      <div
-        id="attendeeInfo"
-        class="attendee"
-      ></div>
-
-    </section>
-
-
-  </main>
+   </main>
 
 
   <!-- ==========================================
@@ -1263,30 +1160,24 @@
 
       if (data.success) {
 
-        loggedInStaff =
-          data.staff;
+  sessionStorage.setItem(
+    "loggedInStaff",
+    JSON.stringify(data.staff)
+  );
 
+  status.textContent =
+    "✓ Login successful. Opening scanner...";
 
-        status.textContent =
-          "✓ Logged in: " +
-          data.staff.fullName +
-          " (" +
-          data.staff.role +
-          ")";
+  status.className =
+    "staff-status logged-in";
 
+  document.getElementById(
+    "staffPin"
+  ).value = "";
 
-        status.className =
-          "staff-status logged-in";
+  window.location.href = "scanner.html";
 
-
-        document.getElementById(
-          "staffPin"
-        ).value = "";
-
-
-        clearResult();
-
-      }
+}
 
       else {
 
@@ -1796,16 +1687,14 @@
      START APPLICATION
   ========================================== */
 
-  window.addEventListener(
-    "load",
-    function () {
+ window.addEventListener(
+  "load",
+  function () {
 
-      testBackend();
+    testBackend();
 
-      startScanner();
-
-    }
-  );
+  }
+);
 
 </script>
 
